@@ -44,7 +44,7 @@
     .hero {
       background: var(--ink);
       color: var(--white);
-      padding: 5rem 2rem 4.5rem;
+      padding: 2.5rem 2rem 3.5rem;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -379,6 +379,13 @@
     .c-special .card-cta     { background: #FEF3C7; color: #78350F; }
     .c-special .card:hover .card-cta { background: #B45309; color: #fff; }
 
+    /* 10 · Experimental & Clinical — Forest */
+    .c-experimental .card-accent { background: linear-gradient(90deg, #14432e, #1f7d5e); }
+    .c-experimental .tag         { background: #E0EFE8; color: #14432e; }
+    .c-experimental .meta-num    { color: #1f7d5e; }
+    .c-experimental .card-cta    { background: #E0EFE8; color: #14432e; }
+    .c-experimental .card:hover .card-cta { background: #14432e; color: #fff; }
+
     /* hover state for all cards — handled per-theme above */
     .card:hover .card-cta { transition: background .15s, color .15s; }
 
@@ -399,22 +406,22 @@
     <p class="hero-label">Goodman &amp; Gilman · Clinical High-Yield Notes</p>
     <h1>Pharmacology<br><em>Learning System</em></h1>
     <p class="hero-sub">
-      Nine integrated study guides spanning every major pharmacological system —
+      Ten integrated study guides spanning every major pharmacological system —
       structured notes, clinical vignette flashcards, and self-test question banks.
     </p>
     <div class="hero-stats">
       <div class="hero-stat">
-        <span class="hero-stat-num">9</span>
-        <span class="hero-stat-label">Systems</span>
+        <span class="hero-stat-num">10</span>
+        <span class="hero-stat-label">Guides</span>
       </div>
       <div class="hero-divider"></div>
       <div class="hero-stat">
-        <span class="hero-stat-num">181</span>
+        <span class="hero-stat-num">209</span>
         <span class="hero-stat-label">Flashcards</span>
       </div>
       <div class="hero-divider"></div>
       <div class="hero-stat">
-        <span class="hero-stat-num">900+</span>
+        <span class="hero-stat-num">1200+</span>
         <span class="hero-stat-label">Quiz Questions</span>
       </div>
       <div class="hero-divider"></div>
@@ -438,7 +445,7 @@
     <a class="card" href="General_Pharmacology_Learning-System.html">
       <div class="card-accent"></div>
       <div class="card-body">
-        <p class="card-chap">Chapters 1 – 6</p>
+        <p class="card-chap">Chapters 1 – 9</p>
         <h2 class="card-title">General Pharmacology</h2>
         <p class="card-desc">
           Pharmacokinetics, pharmacodynamics, drug metabolism, receptor theory,
@@ -467,12 +474,46 @@
     </a>
   </div>
 
-  <!-- 2 · Cardiovascular & Renal -->
+  <!-- 2 · Neuropharmacology &amp; ANS -->
+  <div class="c-neuro">
+    <a class="card" href="Neuropharmacology-ANS_Learning-System.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <p class="card-chap">Chapters 10 – 28</p>
+        <h2 class="card-title">Neuropharmacology &amp; ANS</h2>
+        <p class="card-desc">
+          Autonomic nervous system, CNS pharmacology, anaesthesia, analgesics,
+          antiepileptics, antipsychotics, and mood disorders.
+        </p>
+        <div class="card-tags">
+          <span class="tag">ANS</span>
+          <span class="tag">Psychiatry</span>
+          <span class="tag">Epilepsy</span>
+          <span class="tag">Parkinson's</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-num">20</span>
+            <span class="meta-label">Flashcards</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-num">100</span>
+            <span class="meta-label">Quiz Qs</span>
+          </div>
+        </div>
+        <span class="card-cta">Open <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <!-- 3 · Cardiovascular &amp; Renal -->
   <div class="c-cardio">
     <a class="card" href="Cardiovascular-Renal_Pharmacology_Learning-System.html">
       <div class="card-accent"></div>
       <div class="card-body">
-        <p class="card-chap">Chapters 26 – 32</p>
+        <p class="card-chap">Chapters 29 – 37</p>
         <h2 class="card-title">Cardiovascular &amp; Renal Pharmacology</h2>
         <p class="card-desc">
           Heart failure, arrhythmias, antihypertensives, diuretics, anticoagulants,
@@ -501,12 +542,46 @@
     </a>
   </div>
 
-  <!-- 3 · Endocrine -->
+  <!-- 4 · Inflammation, Immunity &amp; Haematopoiesis -->
+  <div class="c-inflam">
+    <a class="card" href="Inflammation-Immunity-Hematopoiesis_Learning-System.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <p class="card-chap">Chapters 38 – 45</p>
+        <h2 class="card-title">Inflammation, Immunity &amp; Haematopoiesis</h2>
+        <p class="card-desc">
+          NSAIDs, DMARDs, immunosuppressants, biologics, haematopoietic
+          growth factors, anticoagulants, and blood pharmacology.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Biologics</span>
+          <span class="tag">DMARDs</span>
+          <span class="tag">NSAIDs</span>
+          <span class="tag">Haematopoiesis</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-num">20</span>
+            <span class="meta-label">Flashcards</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-num">120</span>
+            <span class="meta-label">Quiz Qs</span>
+          </div>
+        </div>
+        <span class="card-cta">Open <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+  </div>
+
+  <!-- 5 · Endocrine -->
   <div class="c-endo">
     <a class="card" href="Endocrine-Pharmacology_Learning-System.html">
       <div class="card-accent"></div>
       <div class="card-body">
-        <p class="card-chap">Chapters 38 – 44</p>
+        <p class="card-chap">Chapters 46 – 52</p>
         <h2 class="card-title">Endocrine Pharmacology</h2>
         <p class="card-desc">
           Diabetes, thyroid disorders, adrenal pharmacology, reproductive hormones,
@@ -535,7 +610,7 @@
     </a>
   </div>
 
-  <!-- 4 · Gastrointestinal -->
+  <!-- 6 · Gastrointestinal -->
   <div class="c-gi">
     <a class="card" href="Gastrointestinal_Pharmacology_Learning-System.html">
       <div class="card-accent"></div>
@@ -569,7 +644,7 @@
     </a>
   </div>
 
-  <!-- 5 · Infectious Disease -->
+  <!-- 7 · Infectious Disease &amp; Chemotherapy -->
   <div class="c-id">
     <a class="card" href="Infectious-Disease-Chemotherapy_Learning-System.html">
       <div class="card-accent"></div>
@@ -603,41 +678,7 @@
     </a>
   </div>
 
-  <!-- 6 · Inflammation, Immunity & Haematopoiesis -->
-  <div class="c-inflam">
-    <a class="card" href="Inflammation-Immunity-Hematopoiesis_Learning-System.html">
-      <div class="card-accent"></div>
-      <div class="card-body">
-        <p class="card-chap">Chapters 34 – 37</p>
-        <h2 class="card-title">Inflammation, Immunity &amp; Haematopoiesis</h2>
-        <p class="card-desc">
-          NSAIDs, DMARDs, immunosuppressants, biologics, haematopoietic
-          growth factors, anticoagulants, and blood pharmacology.
-        </p>
-        <div class="card-tags">
-          <span class="tag">Biologics</span>
-          <span class="tag">DMARDs</span>
-          <span class="tag">NSAIDs</span>
-          <span class="tag">Haematopoiesis</span>
-        </div>
-      </div>
-      <div class="card-footer">
-        <div class="card-meta">
-          <div class="meta-item">
-            <span class="meta-num">20</span>
-            <span class="meta-label">Flashcards</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-num">120</span>
-            <span class="meta-label">Quiz Qs</span>
-          </div>
-        </div>
-        <span class="card-cta">Open <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-      </div>
-    </a>
-  </div>
-
-  <!-- 7 · Neoplastic Disease -->
+  <!-- 8 · Neoplastic Disease -->
   <div class="c-neo">
     <a class="card" href="Neoplastic-Disease-Pharmacology_Learning-System.html">
       <div class="card-accent"></div>
@@ -653,40 +694,6 @@
           <span class="tag">TKIs</span>
           <span class="tag">Immunotherapy</span>
           <span class="tag">Hormonal</span>
-        </div>
-      </div>
-      <div class="card-footer">
-        <div class="card-meta">
-          <div class="meta-item">
-            <span class="meta-num">20</span>
-            <span class="meta-label">Flashcards</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-num">100</span>
-            <span class="meta-label">Quiz Qs</span>
-          </div>
-        </div>
-        <span class="card-cta">Open <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
-      </div>
-    </a>
-  </div>
-
-  <!-- 8 · Neuropharmacology & ANS -->
-  <div class="c-neuro">
-    <a class="card" href="Neuropharmacology-ANS_Learning-System.html">
-      <div class="card-accent"></div>
-      <div class="card-body">
-        <p class="card-chap">Chapters 8 – 25</p>
-        <h2 class="card-title">Neuropharmacology &amp; ANS</h2>
-        <p class="card-desc">
-          Autonomic nervous system, CNS pharmacology, anaesthesia, analgesics,
-          antiepileptics, antipsychotics, and mood disorders.
-        </p>
-        <div class="card-tags">
-          <span class="tag">ANS</span>
-          <span class="tag">Psychiatry</span>
-          <span class="tag">Epilepsy</span>
-          <span class="tag">Parkinson's</span>
         </div>
       </div>
       <div class="card-footer">
@@ -739,14 +746,48 @@
     </a>
   </div>
 
+  <!-- 10 · Experimental &amp; Clinical Pharmacology -->
+  <div class="c-experimental">
+    <a class="card" href="Experimental-Pharmacology_Learning-System.html">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <p class="card-chap">Practical Manual · 11 Modules</p>
+        <h2 class="card-title">Experimental &amp; Clinical Pharmacology</h2>
+        <p class="card-desc">
+          Laboratory animals &amp; ethics, bioassay, isolated-tissue and in-vivo
+          models, toxicology, biostatistics and clinical pharmacology.
+        </p>
+        <div class="card-tags">
+          <span class="tag">Bioassay</span>
+          <span class="tag">Animal Models</span>
+          <span class="tag">Toxicology</span>
+          <span class="tag">Biostatistics</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta">
+          <div class="meta-item">
+            <span class="meta-num">28</span>
+            <span class="meta-label">Flashcards</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-num">300</span>
+            <span class="meta-label">Quiz Qs</span>
+          </div>
+        </div>
+        <span class="card-cta">Open <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+      </div>
+    </a>
+  </div>
+
 </main>
 
 <!-- ══ FOOTER ═════════════════════════════════════════════════════════════ -->
 <footer>
   <div class="site-footer">
     <p>
-      Based on <strong>Goodman &amp; Gilman's The Pharmacological Basis of Therapeutics</strong>, 13th Edition.<br>
-      Clinical notes compiled for high-yield exam preparation · All 9 files must remain in the same folder for links to work.
+      Based on <strong>Goodman &amp; Gilman's The Pharmacological Basis of Therapeutics</strong>, 14th Edition.<br>
+      Clinical notes compiled for high-yield exam preparation · All files must remain in the same folder for links to work.
     </p>
   </div>
 </footer>

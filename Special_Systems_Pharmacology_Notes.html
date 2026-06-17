@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Systems Pharmacology — PYQ Notes</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --panel:#ffffff; --ink:#1f2328;
+    --muted:#6b7280; --line:#e7e7e4; --accent:#2f6f5e; --accent-soft:#eaf4f0;
+    --star:#d99a00; --shadow:0 1px 2px rgba(0,0,0,.04),0 1px 8px rgba(0,0,0,.03);
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:40px 22px 120px}
+  header.top{margin-bottom:26px}
+  h1{font-size:1.7rem; font-weight:650; letter-spacing:-.02em; margin:0 0 4px}
+  .sub{color:var(--muted); font-size:.92rem; margin:0}
+  .tools{
+    position:sticky; top:0; z-index:20; background:rgba(251,251,250,.86);
+    backdrop-filter:blur(8px); padding:14px 0; margin:18px 0 8px;
+    border-bottom:1px solid var(--line); display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  }
+  #search{
+    flex:1; min-width:200px; padding:10px 14px; border:1px solid var(--line);
+    border-radius:var(--radius); font-size:.95rem; background:var(--panel); color:var(--ink);
+    outline:none;
+  }
+  #search:focus{border-color:var(--accent)}
+  .btn{
+    border:1px solid var(--line); background:var(--panel); color:var(--ink);
+    padding:9px 14px; border-radius:var(--radius); font-size:.85rem; cursor:pointer;
+    transition:.15s; white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent)}
+  .count{color:var(--muted); font-size:.82rem; margin-left:2px}
+
+  .toc{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:14px 18px; margin:14px 0 28px; box-shadow:var(--shadow);
+  }
+  .toc h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:0 0 8px}
+  .toc a{display:block; color:var(--ink); text-decoration:none; font-size:.9rem; padding:3px 0}
+  .toc a:hover{color:var(--accent)}
+
+  section.sec{margin:34px 0}
+  .sec > h2{
+    font-size:1.12rem; font-weight:650; letter-spacing:-.01em; margin:0 0 4px;
+    padding-bottom:8px; border-bottom:2px solid var(--accent-soft);
+  }
+  .sec-note{color:var(--muted); font-size:.84rem; margin:0 0 14px}
+
+  details.q{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    margin:9px 0; box-shadow:var(--shadow); overflow:hidden; transition:border-color .15s;
+  }
+  details.q[open]{border-color:#d6e6e0}
+  summary.q-head{
+    list-style:none; cursor:pointer; padding:15px 18px; display:flex; gap:11px;
+    align-items:flex-start; font-weight:520; font-size:.97rem; user-select:none;
+  }
+  summary.q-head::-webkit-details-marker{display:none}
+  summary.q-head:hover{background:#fcfdfc}
+  .chev{flex-shrink:0; display:inline-block; width:14px; margin-top:1px; color:var(--muted); transition:transform .2s; font-size:.8rem}
+  details.q[open] .chev{transform:rotate(90deg); color:var(--accent)}
+  .stars{flex-shrink:0; color:var(--star); font-size:.8rem; letter-spacing:1px; margin-top:2px; min-width:0}
+  .q-text{flex:1}
+  .answer{
+    padding:4px 22px 20px 45px; border-top:1px solid var(--line); margin-top:-1px;
+    font-size:.93rem; color:#33383d;
+  }
+  .answer h4{
+    font-size:.86rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent);
+    margin:18px 0 7px;
+  }
+  .answer h5{font-size:.92rem; color:var(--ink); margin:14px 0 4px; font-weight:640}
+  .answer p{margin:9px 0}
+  .answer ul,.answer ol{margin:8px 0; padding-left:20px}
+  .answer li{margin:4px 0}
+  .answer b{font-weight:620}
+  .answer table{
+    width:100%; border-collapse:collapse; margin:12px 0; font-size:.85rem;
+  }
+  .answer th,.answer td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top}
+  .answer th{background:var(--accent-soft); font-weight:600}
+  .answer .dia{
+    background:#f6f8f7; border:1px dashed #c7d6d0; border-radius:8px; padding:10px 14px;
+    margin:12px 0; font-size:.85rem; color:#4a5550;
+  }
+  .answer .dia b{color:var(--accent)}
+  .recent{background:#fbf6ec; border-left:3px solid var(--star); padding:8px 14px; border-radius:0 8px 8px 0; margin:12px 0}
+  .recent b{color:#9a7000}
+  .answer code{background:#f0f2f1; padding:1px 5px; border-radius:4px; font-size:.84em}
+  .nohit{text-align:center; color:var(--muted); padding:40px; display:none}
+  mark{background:#fff2a8; padding:0 1px}
+  footer{margin-top:60px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.8rem; text-align:center}
+  @media (max-width:560px){.wrap{padding:24px 14px 90px} .answer{padding-left:18px}}
+
+  /* ---- v2 interactive additions ---- */
+  body{transition:background .25s, color .25s}
+  .chips{display:flex; gap:7px; flex-wrap:wrap; margin:2px 0 10px}
+  .chip{border:1px solid var(--line); background:var(--panel); color:var(--muted); padding:5px 13px; border-radius:999px; font-size:.8rem; cursor:pointer; transition:.15s}
+  .chip:hover{border-color:var(--accent); color:var(--accent)}
+  .chip.active{background:var(--accent); border-color:var(--accent); color:#fff}
+  .iconbtn{font-size:1rem; line-height:1}
+  details.q.vignette{border-left:3px solid #c98a3c}
+  .badge{display:inline-block; flex-shrink:0; background:#f3e2c8; color:#8a5a16; font-size:.6rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 7px; border-radius:5px; margin-top:1px}
+  .kbfocus{outline:2px solid var(--accent); outline-offset:2px}
+  .answer .case-q{background:#f6f8f7; border-left:3px solid var(--accent); padding:9px 14px; border-radius:0 8px 8px 0; margin:2px 0 12px}
+  .hint{color:var(--muted); font-size:.78rem; margin:6px 0 0}
+  .hint kbd{background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:0 5px; font-size:.9em; font-family:inherit}
+  [data-theme="dark"]{--bg:#15171a; --panel:#1e2125; --ink:#e6e8ea; --muted:#9aa3ad; --line:#33373d; --accent:#5db89e; --accent-soft:#26342f; --star:#e0a93a; --shadow:0 1px 2px rgba(0,0,0,.35)}
+  [data-theme="dark"] .tools{background:rgba(21,23,26,.85)}
+  [data-theme="dark"] summary.q-head:hover{background:#23272c}
+  [data-theme="dark"] details.q[open]{border-color:#3a4a44}
+  [data-theme="dark"] .answer{color:#cfd4d8}
+  [data-theme="dark"] .answer .dia,[data-theme="dark"] .answer .case-q{background:#23282c; border-color:#3a4a44; color:#bcc4c2}
+  [data-theme="dark"] .recent{background:#2a2519}
+  [data-theme="dark"] .answer code{background:#2a2e33}
+  [data-theme="dark"] mark{background:#7a6212; color:#fff}
+  [data-theme="dark"] .badge{background:#3a2f1c; color:#e0a93a}
+
+  /* ---- per-section colour theming ---- */
+  .sec{--sec:var(--accent); --sec-soft:var(--accent-soft)}
+  .sec > h2{border-bottom:2px solid var(--sec)}
+  .sec details.q{border-left:4px solid var(--sec)}
+  .sec details.q[open]{border-left-color:var(--sec)}
+  .sec details.q[open] .chev{color:var(--sec)}
+  .sec .answer h4{color:var(--sec)}
+  .sec .answer th{background:var(--sec-soft)}
+  kbd{background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:0 5px; font-size:.85em; font-family:inherit}
+  .toc a{display:flex; align-items:center}
+  .toc .dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:10px; flex-shrink:0}
+  [data-theme="dark"] .sec > h2{filter:brightness(1.35)}
+  [data-theme="dark"] .sec .answer h4{filter:brightness(1.4)}
+  [data-theme="dark"] .sec .answer th{background:rgba(255,255,255,.06)}
+  [data-theme="dark"] .toc .dot{filter:brightness(1.3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Special Systems Pharmacology — Consolidated PYQ Notes</h1>
+    <p class="sub">Exam-oriented model answers · Goodman &amp; Gilman, Katzung, Rang &amp; Dale + current guidelines · click any question to open the answer</p>
+  </header>
+
+  <div class="tools">
+    <input id="search" type="text" placeholder="🔍  Search… ( / )" autocomplete="off">
+    <button class="btn" id="shuffle" title="Random question (R)">🎲 Quiz me</button>
+    <button class="btn" id="expandAll" title="Expand visible (E)">Expand</button>
+    <button class="btn" id="collapseAll" title="Collapse all (C)">Collapse</button>
+    <button class="btn iconbtn" id="theme" title="Dark mode (D)">🌙</button>
+    <span class="count" id="counter"></span>
+  </div>
+  <div class="chips" id="chips">
+    <button class="chip active" data-f="all">All</button>
+    <button class="chip" data-f="3">★★★</button>
+    <button class="chip" data-f="2">★★</button>
+    <button class="chip" data-f="1">★</button>
+    <button class="chip" data-f="case">🩺 Cases</button>
+  </div>
+  <p class="hint">Shortcuts: <kbd>/</kbd> search · <kbd>R</kbd> random · <kbd>J</kbd>/<kbd>K</kbd> next/prev · <kbd>Space</kbd> open · <kbd>E</kbd>/<kbd>C</kbd> expand/collapse · <kbd>D</kbd> dark</p>
+
+  <nav class="toc" id="toc">
+    <h2>Sections</h2>
+    <a href="#s1"><span class="dot" style="background:#2f7d6a"></span>1 · Antibiotic Use, Resistance &amp; Stewardship</a>
+    <a href="#s2"><span class="dot" style="background:#3f6cb0"></span>2 · Ocular Pharmacology</a>
+    <a href="#s3"><span class="dot" style="background:#845bb0"></span>3 · Dermatopharmacology</a>
+    <a href="#s4"><span class="dot" style="background:#b15068"></span>4 · Corticosteroids — Uses &amp; Safety</a>
+    <a href="#s5"><span class="dot" style="background:#b3852f"></span>5 · Ecopharmacology &amp; One Health</a>
+    <a href="#s6"><span class="dot" style="background:#2f8696"></span>6 · Poisoning Management &amp; Chelating Agents</a>
+    <a href="#s7"><span class="dot" style="background:#548a4f"></span>7 · Other Important Topics (Overlaps)</a>
+    <a href="#scase"><span class="dot" style="background:#c06a3e"></span>🩺 Clinical Case Vignettes</a>
+  </nav>
+
+  <p class="nohit" id="nohit">No questions match your search.</p>
+
+  <div id="content">
+<!-- CONTENT START -->
+
+<section class="sec" id="s1" style="--sec:#2f7d6a;--sec-soft:#2f7d6a26">
+  <h2>Section 1 · Antibiotic Use, Resistance &amp; Stewardship</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Rational &amp; irrational use of antibiotics; mechanisms of antibiotic action &amp; bacterial resistance; measures to reduce resistance; note on Antibiotic Stewardship Programme &amp; antibiotic policy.</span></summary>
+  <div class="answer">
+    <h4>Mechanisms of antibiotic action</h4>
+    <table>
+      <tr><th>Target</th><th>Class / example</th></tr>
+      <tr><td>Cell-wall synthesis</td><td>β-lactams (penicillins, cephalosporins, carbapenems), vancomycin</td></tr>
+      <tr><td>Protein synthesis</td><td>Aminoglycosides, tetracyclines, macrolides, clindamycin, linezolid, chloramphenicol</td></tr>
+      <tr><td>Nucleic acid synthesis</td><td>Fluoroquinolones (DNA gyrase), rifampicin (RNA polymerase)</td></tr>
+      <tr><td>Folate synthesis</td><td>Sulfonamides, trimethoprim</td></tr>
+      <tr><td>Cell membrane</td><td>Polymyxins, daptomycin</td></tr>
+    </table>
+    <h4>Rational vs irrational use</h4>
+    <table>
+      <tr><th>Rational</th><th>Irrational</th></tr>
+      <tr><td>Right drug/dose/duration; culture-directed; correct indication (bacterial); de-escalation</td><td>For viral illness; wrong/excess dose; inadequate or excessive duration; OTC misuse; unnecessary broad-spectrum/combinations</td></tr>
+    </table>
+    <h4>Mechanisms of bacterial resistance</h4>
+    <ul>
+      <li><b>Enzymatic inactivation</b> (β-lactamases, aminoglycoside-modifying enzymes).</li>
+      <li><b>Altered target</b> (PBP change — MRSA; ribosomal/DNA-gyrase mutation; altered penicillin-binding in pneumococci).</li>
+      <li><b>↓ Permeability</b> (porin loss) &amp; <b>efflux pumps</b> (tetracyclines, fluoroquinolones).</li>
+      <li><b>Bypass pathway</b> (alternate enzyme — sulfonamide resistance).</li>
+      <li>Genetic spread: mutation; horizontal transfer via plasmids, transposons, integrons (conjugation/transduction/transformation).</li>
+    </ul>
+    <h4>Measures to reduce/overcome resistance</h4>
+    <ul>
+      <li>Rational prescribing, culture &amp; sensitivity-guided therapy, correct dose/duration, de-escalation.</li>
+      <li>Infection control &amp; hand hygiene; vaccination; restrict OTC sale (Schedule H1); avoid agricultural/veterinary misuse (One Health).</li>
+      <li>Develop new antibiotics &amp; β-lactamase inhibitors; combination therapy; surveillance.</li>
+    </ul>
+    <h4>Antibiotic Stewardship Programme (AMSP) &amp; policy</h4>
+    <ul>
+      <li>Coordinated hospital programme to optimise antimicrobial use: hospital antibiogram, formulary restriction, prior-authorisation of reserve drugs, prospective audit &amp; feedback, de-escalation, IV-to-oral switch, duration limits.</li>
+      <li><b>WHO AWaRe</b> classification (Access, Watch, Reserve) guides selection.</li>
+      <li><b>Indian context:</b> National Action Plan on AMR (NAP-AMR), ICMR treatment guidelines, Schedule H1, "Red Line" campaign.</li>
+    </ul>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Resistance to β-lactam antibiotics; newer β-lactams &amp; β-lactamase inhibitors with clinical applications.</span></summary>
+  <div class="answer">
+    <h4>Mechanisms of β-lactam resistance</h4>
+    <ul>
+      <li><b>β-lactamase production</b> — hydrolyse β-lactam ring (penicillinase, ESBL, AmpC, carbapenemases — KPC, NDM-1, OXA).</li>
+      <li><b>Altered PBPs</b> — e.g. PBP2a in MRSA (mecA gene); altered PBP in penicillin-resistant pneumococci.</li>
+      <li><b>↓ Permeability</b> (porin loss) &amp; <b>efflux</b> in gram-negatives.</li>
+    </ul>
+    <h4>β-lactamase inhibitors &amp; combinations</h4>
+    <table>
+      <tr><th>Inhibitor</th><th>Combination</th><th>Use</th></tr>
+      <tr><td>Clavulanic acid</td><td>Amoxicillin-clavulanate</td><td>Common infections</td></tr>
+      <tr><td>Sulbactam</td><td>Ampicillin-sulbactam, cefoperazone-sulbactam</td><td>Mixed/Acinetobacter</td></tr>
+      <tr><td>Tazobactam</td><td>Piperacillin-tazobactam, ceftolozane-tazobactam</td><td>Nosocomial, Pseudomonas</td></tr>
+      <tr><td><b>Avibactam</b></td><td>Ceftazidime-avibactam</td><td>ESBL, KPC, AmpC, OXA-48</td></tr>
+      <tr><td><b>Vaborbactam / Relebactam</b></td><td>Meropenem-vaborbactam, imipenem-relebactam</td><td>Carbapenem-resistant Enterobacterales</td></tr>
+    </table>
+    <h4>Newer β-lactams</h4>
+    <p><b>Cefiderocol</b> — siderophore cephalosporin (uses iron-transport to enter; active vs MDR gram-negatives incl. carbapenem-resistant); newer cephalosporins (ceftaroline — anti-MRSA); carbapenems for ESBL.</p>
+    <div class="recent"><b>Recent:</b> Newer BLI combinations (avibactam, relebactam, vaborbactam) &amp; cefiderocol combat carbapenem-resistant gram-negatives (NDM, KPC).</div>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Anti-pseudomonal antibiotics and treatment of pseudomonal infections.</span></summary>
+  <div class="answer">
+    <h4>Anti-pseudomonal antibiotics by class</h4>
+    <table>
+      <tr><th>Class</th><th>Agents</th></tr>
+      <tr><td>Anti-pseudomonal penicillins</td><td>Piperacillin (-tazobactam), ticarcillin</td></tr>
+      <tr><td>Cephalosporins</td><td>Ceftazidime, cefepime, ceftolozane-tazobactam, ceftazidime-avibactam</td></tr>
+      <tr><td>Carbapenems</td><td>Meropenem, imipenem, doripenem (not ertapenem)</td></tr>
+      <tr><td>Monobactam</td><td>Aztreonam</td></tr>
+      <tr><td>Aminoglycosides</td><td>Amikacin, tobramycin, gentamicin</td></tr>
+      <tr><td>Fluoroquinolones</td><td>Ciprofloxacin, levofloxacin</td></tr>
+      <tr><td>Polymyxins (MDR)</td><td>Colistin, polymyxin B</td></tr>
+      <tr><td>Newer</td><td>Cefiderocol</td></tr>
+    </table>
+    <h4>Treatment principles</h4>
+    <ul>
+      <li><b>Pseudomonas aeruginosa</b> is intrinsically resistant to many drugs &amp; develops resistance rapidly.</li>
+      <li><b>Combination therapy</b> often used for serious infections (β-lactam + aminoglycoside or fluoroquinolone) — broaden cover, synergy, ↓ resistance.</li>
+      <li>Conditions: hospital-acquired/ventilator pneumonia, burns, febrile neutropenia, UTIs, cystic fibrosis (inhaled tobramycin/colistin), osteomyelitis, endocarditis.</li>
+      <li>De-escalate per culture; MDR strains → ceftolozane-tazobactam, ceftazidime-avibactam, cefiderocol, colistin.</li>
+    </ul>
+  </div></details>
+</section>
+
+<section class="sec" id="s2" style="--sec:#3f6cb0;--sec-soft:#3f6cb026">
+  <h2>Section 2 · Ocular Pharmacology</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Pharmacotherapy of glaucoma; classify drugs (mechanisms); autonomic drugs in ophthalmic practice, ocular NSAIDs, ocular drug-delivery; note on drug-induced ocular toxicity &amp; ocular dyes.</span></summary>
+  <div class="answer">
+    <h4>Glaucoma drug classes</h4>
+    <table>
+      <tr><th>Class</th><th>Drug</th><th>Mechanism</th></tr>
+      <tr><td>Prostaglandin analogues (1st-line)</td><td>Latanoprost, bimatoprost, travoprost</td><td>↑ uveoscleral outflow</td></tr>
+      <tr><td>β-blockers</td><td>Timolol, betaxolol</td><td>↓ aqueous production</td></tr>
+      <tr><td>α2-agonists</td><td>Brimonidine, apraclonidine</td><td>↓ production + ↑ outflow</td></tr>
+      <tr><td>Carbonic anhydrase inhibitors</td><td>Dorzolamide (topical), acetazolamide (oral)</td><td>↓ aqueous production</td></tr>
+      <tr><td>Cholinergic miotics</td><td>Pilocarpine</td><td>↑ trabecular outflow</td></tr>
+      <tr><td>Rho-kinase inhibitor</td><td>Netarsudil</td><td>↑ trabecular outflow</td></tr>
+      <tr><td>Hyperosmotics</td><td>Mannitol, glycerol</td><td>↓ vitreous volume (acute)</td></tr>
+    </table>
+    <p><b>Acute angle-closure:</b> IV acetazolamide + mannitol + topical pilocarpine + timolol → laser iridotomy.</p>
+    <h4>Autonomic drugs in ophthalmic practice</h4>
+    <ul>
+      <li><b>Mydriatics/cycloplegics:</b> atropine, homatropine, cyclopentolate, tropicamide (antimuscarinic); phenylephrine (α1 — mydriasis without cycloplegia).</li>
+      <li><b>Miotics:</b> pilocarpine (muscarinic agonist).</li>
+      <li>β-blockers &amp; α2-agonists for IOP (above).</li>
+    </ul>
+    <h4>Ocular uses of NSAIDs</h4>
+    <p>Ketorolac, nepafenac, diclofenac, flurbiprofen — control postoperative inflammation/pain, prevent cystoid macular oedema, maintain intraoperative mydriasis, allergic conjunctivitis.</p>
+    <h4>Ocular drug-delivery strategies</h4>
+    <ul>
+      <li>Topical drops/ointments (most common), gels, inserts (Ocusert), soft contact lenses.</li>
+      <li>Subconjunctival, intravitreal injection (anti-VEGF, steroids), intravitreal implants (dexamethasone, fluocinolone), periocular; nanocarriers/iontophoresis (emerging).</li>
+    </ul>
+    <h4>Drug-induced ocular toxicity</h4>
+    <p>Chloroquine/hydroxychloroquine — retinopathy; ethambutol — optic neuritis; corticosteroids — cataract &amp; glaucoma; amiodarone — corneal deposits; topiramate — acute glaucoma; tamoxifen — retinopathy; digoxin — xanthopsia; sildenafil — blue vision.</p>
+    <h4>Ocular dyes</h4>
+    <p><b>Fluorescein</b> — corneal abrasion/ulcer detection, angiography, applanation tonometry; <b>rose bengal/lissamine green</b> — devitalised cells (dry eye).</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Pharmacological management of glaucoma with emphasis on newer agents (including Brimonidine).</span></summary>
+  <div class="answer">
+    <h4>Stepwise management</h4>
+    <ul>
+      <li><b>First-line:</b> prostaglandin analogue (latanoprost) — most effective, once-daily, ↑ uveoscleral outflow.</li>
+      <li>Add/alternative: β-blocker, α2-agonist, topical CAI; combination eye-drops to improve adherence.</li>
+      <li>Refractory → laser trabeculoplasty / surgery.</li>
+    </ul>
+    <h4>Brimonidine (α2-agonist)</h4>
+    <ul>
+      <li>Selective α2-agonist → ↓ aqueous production <b>and</b> ↑ uveoscleral outflow; possible <b>neuroprotection</b>.</li>
+      <li>Uses: open-angle glaucoma/ocular hypertension, peri-laser IOP spikes.</li>
+      <li>ADR: ocular allergy, dry mouth, fatigue; <b>avoid in infants/young children</b> (CNS depression, apnoea).</li>
+    </ul>
+    <h4>Newer agents</h4>
+    <ul>
+      <li><b>Netarsudil</b> (Rho-kinase inhibitor) — ↑ trabecular outflow, ↓ episcleral venous pressure.</li>
+      <li><b>Latanoprostene bunod</b> — NO-donating prostaglandin (dual outflow).</li>
+      <li>Fixed-combination drops; sustained-release bimatoprost implant (Durysta).</li>
+    </ul>
+    <div class="recent"><b>Recent:</b> Rho-kinase inhibitors &amp; NO-donating prostaglandins; intracameral sustained-release implants reduce adherence burden.</div>
+  </div></details>
+</section>
+
+<section class="sec" id="s3" style="--sec:#845bb0;--sec-soft:#845bb026">
+  <h2>Section 3 · Dermatopharmacology</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Treatment &amp; recent developments in psoriasis; role of topical glucocorticoids, retinoids, calcineurin inhibitors (tacrolimus) &amp; biologics/TNF-α inhibitors in dermatology.</span></summary>
+  <div class="answer">
+    <h4>Psoriasis — stepwise treatment</h4>
+    <table>
+      <tr><th>Severity</th><th>Treatment</th></tr>
+      <tr><td>Mild (topical)</td><td>Topical corticosteroids, vitamin-D analogues (calcipotriol), topical retinoid (tazarotene), calcineurin inhibitors (face/flexures), coal tar, salicylic acid, emollients</td></tr>
+      <tr><td>Moderate-severe</td><td>Phototherapy (NB-UVB, PUVA); systemic — methotrexate, ciclosporin, acitretin, apremilast (PDE4)</td></tr>
+      <tr><td>Severe/refractory</td><td><b>Biologics</b></td></tr>
+    </table>
+    <h4>Biologics in psoriasis</h4>
+    <table>
+      <tr><th>Target</th><th>Drugs</th></tr>
+      <tr><td>TNF-α</td><td>Etanercept, infliximab, adalimumab</td></tr>
+      <tr><td>IL-12/23</td><td>Ustekinumab</td></tr>
+      <tr><td>IL-17</td><td>Secukinumab, ixekizumab, brodalumab</td></tr>
+      <tr><td>IL-23</td><td>Guselkumab, risankizumab, tildrakizumab</td></tr>
+      <tr><td>Oral targeted</td><td>Apremilast (PDE4), deucravacitinib (TYK2)</td></tr>
+    </table>
+    <h4>Drug classes in dermatology (roles)</h4>
+    <ul>
+      <li><b>Topical glucocorticoids:</b> anti-inflammatory/immunosuppressive; classified by potency (mild → super-potent). ADR: skin atrophy, striae, telangiectasia, tachyphylaxis, HPA suppression. Avoid prolonged use on face/flexures.</li>
+      <li><b>Retinoids:</b> topical (tretinoin, adapalene, tazarotene — acne, psoriasis) &amp; systemic (isotretinoin — severe acne; acitretin — psoriasis); <b>highly teratogenic</b> (pregnancy prevention).</li>
+      <li><b>Calcineurin inhibitors (tacrolimus, pimecrolimus):</b> topical steroid-sparing for atopic dermatitis &amp; sensitive areas (face, eyelids); no skin atrophy.</li>
+      <li><b>TNF-α inhibitors/biologics:</b> moderate-severe psoriasis/psoriatic arthritis; screen latent TB.</li>
+    </ul>
+    <div class="recent"><b>Recent:</b> IL-17 &amp; IL-23 biologics give high skin-clearance (PASI 90/100); oral <b>deucravacitinib</b> (TYK2) &amp; JAK inhibitors (atopic dermatitis — upadacitinib, abrocitinib); topical roflumilast/tapinarof.</div>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Short note on topical antifungal agents; antiseptics &amp; disinfectants with clinical applications.</span></summary>
+  <div class="answer">
+    <h4>Topical antifungal agents</h4>
+    <table>
+      <tr><th>Class</th><th>Drugs</th><th>Use</th></tr>
+      <tr><td>Azoles</td><td>Clotrimazole, miconazole, ketoconazole, luliconazole</td><td>Dermatophytosis, candidiasis, pityriasis</td></tr>
+      <tr><td>Allylamines</td><td>Terbinafine, naftifine</td><td>Tinea (fungicidal)</td></tr>
+      <tr><td>Polyenes</td><td>Nystatin</td><td>Cutaneous/oral candidiasis</td></tr>
+      <tr><td>Others</td><td>Ciclopirox, amorolfine (nail), tolnaftate, Whitfield's ointment</td><td>Onychomycosis, tinea</td></tr>
+    </table>
+    <p>Extensive/nail/scalp infection needs systemic therapy (terbinafine, itraconazole).</p>
+    <h4>Antiseptics &amp; disinfectants</h4>
+    <p><b>Antiseptic</b> = applied to living tissue; <b>disinfectant</b> = applied to inanimate objects (some agents both).</p>
+    <table>
+      <tr><th>Agent</th><th>Application</th></tr>
+      <tr><td>Alcohols (ethyl/isopropyl 60–90%)</td><td>Skin/hand &amp; surface disinfection</td></tr>
+      <tr><td>Chlorhexidine</td><td>Pre-op skin, hand scrub, mouthwash</td></tr>
+      <tr><td>Povidone-iodine</td><td>Skin/wound antisepsis, pre-surgical</td></tr>
+      <tr><td>Hydrogen peroxide</td><td>Wound cleansing</td></tr>
+      <tr><td>Chlorine compounds (hypochlorite)</td><td>Water/surface/instrument disinfection</td></tr>
+      <tr><td>Glutaraldehyde / formaldehyde</td><td>Instrument sterilisation (endoscopes)</td></tr>
+      <tr><td>Quaternary ammonium (cetrimide)</td><td>Surface &amp; skin</td></tr>
+    </table>
+  </div></details>
+</section>
+
+<section class="sec" id="s4" style="--sec:#b15068;--sec-soft:#b1506826">
+  <h2>Section 4 · Corticosteroids — Uses &amp; Safety</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Corticosteroids — MOA, therapeutic uses (endocrine &amp; non-endocrine), ADRs; life-saving uses, role in malignancy/COVID-19/dermatology; note on long-term &amp; topical therapy.</span></summary>
+  <div class="answer">
+    <h4>Mechanism of action</h4>
+    <ol>
+      <li>Lipophilic steroid enters cell → binds cytoplasmic <b>glucocorticoid receptor</b> (HSP90-bound) → complex translocates to nucleus.</li>
+      <li>Binds <b>Glucocorticoid Response Elements (GRE)</b> → <b>transactivation</b> of anti-inflammatory genes (annexin-1/lipocortin, IκB) &amp; <b>transrepression</b> of NF-κB/AP-1 → ↓ cytokines, COX-2, phospholipase A2.</li>
+      <li>Net: anti-inflammatory, immunosuppressive, metabolic (gluconeogenesis), plus rapid non-genomic effects.</li>
+    </ol>
+    <h4>Therapeutic uses</h4>
+    <table>
+      <tr><th>Endocrine (replacement)</th><th>Non-endocrine (pharmacological)</th></tr>
+      <tr><td>Adrenal insufficiency (Addison's), CAH, acute adrenal crisis</td><td>Inflammatory/allergic disease, autoimmune disease, asthma/COPD, dermatoses, IBD, transplant immunosuppression, malignancy, cerebral oedema, shock</td></tr>
+    </table>
+    <h4>Life-saving uses</h4>
+    <ul><li>Anaphylaxis (adjunct), acute severe asthma, adrenal crisis, septic shock (refractory), cerebral oedema, severe COVID-19, status asthmaticus, severe drug reactions (SJS/TEN), autoimmune crises.</li></ul>
+    <h4>Role in malignancy</h4>
+    <p>Lympholytic → apoptosis of lymphoid cells: ALL, lymphoma, multiple myeloma, CLL (CHOP/VAD regimens); antiemetic with chemo; ↓ cerebral oedema (brain tumours/metastases); hypercalcaemia of malignancy; appetite/palliation.</p>
+    <h4>Role in COVID-19</h4>
+    <p><b>Dexamethasone</b> (RECOVERY trial) reduced mortality in patients needing oxygen/ventilation by dampening the cytokine-mediated inflammatory/hyperimmune response.</p>
+    <h4>Role in dermatology</h4>
+    <p>Topical (eczema, psoriasis, dermatitis) &amp; systemic (pemphigus, severe drug reactions). Topical potency graded; ADR — skin atrophy, striae, tachyphylaxis.</p>
+    <h4>Adverse effects (esp. long-term)</h4>
+    <ul>
+      <li><b>Iatrogenic Cushing's</b>, weight gain, moon face, truncal obesity.</li>
+      <li>Hyperglycaemia/diabetes, hypertension, osteoporosis, avascular necrosis, myopathy.</li>
+      <li>Peptic ulcer, immunosuppression/infection (TB reactivation), cataract &amp; glaucoma, growth retardation (children), mood/psychosis, skin thinning.</li>
+      <li><b>HPA-axis suppression</b> → never stop abruptly (taper to avoid adrenal crisis).</li>
+    </ul>
+    <h4>Precautions for long-term &amp; topical therapy</h4>
+    <ul>
+      <li>Lowest effective dose, shortest duration; alternate-day dosing; morning dosing (mimic circadian); taper gradually.</li>
+      <li>Calcium + vitamin D ± bisphosphonate (bone protection); monitor BP, glucose, weight, eyes; PPI if ulcer risk; screen/treat latent TB.</li>
+      <li>Topical: use appropriate potency for site, avoid prolonged use on face/flexures, beware systemic absorption in children/large areas.</li>
+    </ul>
+  </div></details>
+</section>
+
+<section class="sec" id="s5" style="--sec:#b3852f;--sec-soft:#b3852f26">
+  <h2>Section 5 · Ecopharmacology &amp; One Health</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Ecopharmacology — pharmaceuticals in the environment, ecopharmacovigilance &amp; the One Health concept; recent advances &amp; regulatory aspects.</span></summary>
+  <div class="answer">
+    <h4>Definitions</h4>
+    <ul>
+      <li><b>Ecopharmacology:</b> study of the entry, fate, distribution and effects of pharmaceuticals (and their metabolites) in the environment.</li>
+      <li><b>Ecopharmacovigilance (EPV):</b> the science &amp; activities concerning detection, assessment, understanding and prevention of adverse effects of pharmaceuticals <b>in the environment</b> (the environmental analogue of pharmacovigilance).</li>
+    </ul>
+    <h4>Pharmaceuticals in the environment — sources &amp; examples</h4>
+    <ul>
+      <li><b>Sources:</b> patient excretion (urine/faeces), manufacturing effluent, improper disposal of unused/expired drugs, hospital &amp; livestock waste.</li>
+      <li><b>Examples of harm:</b> <b>diclofenac</b> → catastrophic decline of Indian vultures (renal failure); <b>synthetic estrogens</b> → feminisation/altered reproduction in fish; <b>antibiotics</b> → environmental antimicrobial resistance; antineoplastics, NSAIDs, hormones &amp; psychoactive drugs detected in surface/drinking water.</li>
+    </ul>
+    <h4>One Health concept</h4>
+    <p>A collaborative, multisectoral approach recognising that <b>human, animal and environmental health are interconnected</b>. Crucial for <b>AMR</b> — antibiotic use in humans, animals/agriculture &amp; environmental contamination all drive resistance, requiring coordinated action.</p>
+    <h4>Mitigation &amp; regulatory aspects</h4>
+    <ul>
+      <li><b>Environmental Risk Assessment (ERA)</b> now part of drug approval (EMA/FDA).</li>
+      <li>"Green pharmacy"/eco-friendly drug design (benign-by-design, biodegradable molecules).</li>
+      <li>Drug take-back/disposal programmes; improved sewage &amp; effluent treatment; manufacturing discharge norms.</li>
+      <li>Surveillance &amp; classification of environmentally hazardous drugs; ban on veterinary diclofenac (India).</li>
+    </ul>
+    <div class="recent"><b>Recent advances:</b> One Health AMR action plans (NAP-AMR), antibiotic discharge limits for manufacturers, environmental monitoring of waterways, and incorporation of EPV into pharmacovigilance frameworks.</div>
+  </div></details>
+</section>
+
+<section class="sec" id="s6" style="--sec:#2f8696;--sec-soft:#2f869626">
+  <h2>Section 6 · Poisoning Management &amp; Chelating Agents</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">General principles of poisoning management; role of chelating agents in heavy-metal poisoning (examples); note on paracetamol poisoning, iron overload &amp; atropine poisoning.</span></summary>
+  <div class="answer">
+    <h4>General principles of poisoning management</h4>
+    <ol>
+      <li><b>Resuscitation &amp; stabilisation (ABCDE)</b> — airway, breathing, circulation, disability, exposure.</li>
+      <li><b>Identification</b> — history, examination, toxidromes, lab/levels.</li>
+      <li><b>Decontamination:</b> activated charcoal (within 1 h), gastric lavage (selected early presentations), skin/eye irrigation, whole-bowel irrigation (iron, packets, SR drugs).</li>
+      <li><b>Enhanced elimination:</b> urine alkalinisation (salicylate, phenobarbitone), multiple-dose charcoal, haemodialysis (methanol, lithium, salicylate, ethylene glycol).</li>
+      <li><b>Specific antidotes.</b></li>
+      <li><b>Supportive &amp; symptomatic care</b>, monitoring, psychiatric referral.</li>
+    </ol>
+    <h4>Common antidotes</h4>
+    <table>
+      <tr><th>Poison</th><th>Antidote</th></tr>
+      <tr><td>Opioids</td><td>Naloxone</td></tr>
+      <tr><td>Benzodiazepines</td><td>Flumazenil</td></tr>
+      <tr><td>Organophosphate</td><td>Atropine + pralidoxime</td></tr>
+      <tr><td>Paracetamol</td><td>N-acetylcysteine</td></tr>
+      <tr><td>Methanol/ethylene glycol</td><td>Fomepizole/ethanol</td></tr>
+      <tr><td>Cyanide</td><td>Hydroxocobalamin, sodium thiosulfate</td></tr>
+      <tr><td>Warfarin</td><td>Vitamin K, PCC</td></tr>
+    </table>
+    <h4>Chelating agents in heavy-metal poisoning</h4>
+    <p><b>Chelator</b> = forms stable, water-soluble, non-toxic complexes with metal ions for excretion.</p>
+    <table>
+      <tr><th>Metal</th><th>Chelator</th></tr>
+      <tr><td>Lead</td><td>CaNa₂-EDTA, DMSA (succimer), dimercaprol (encephalopathy)</td></tr>
+      <tr><td>Arsenic/Mercury/Gold</td><td>Dimercaprol (BAL), DMSA, DMPS</td></tr>
+      <tr><td>Iron</td><td>Deferoxamine (IV), deferasirox/deferiprone (oral)</td></tr>
+      <tr><td>Copper (Wilson's)</td><td>D-penicillamine, trientine</td></tr>
+    </table>
+    <p>Avoid oral chelator while metal remains in gut (may ↑ absorption); monitor renal function.</p>
+    <h4>Paracetamol poisoning</h4>
+    <p>Toxic metabolite <b>NAPQI</b> (via CYP2E1) depletes glutathione → hepatic necrosis. Use the <b>Rumack-Matthew nomogram</b>; antidote <b>N-acetylcysteine</b> (replenishes glutathione) — most effective within 8 h; activated charcoal if early.</p>
+    <h4>Iron overload</h4>
+    <p>Acute iron poisoning or chronic transfusional overload (thalassaemia). Chelation: <b>deferoxamine</b> (IV/IM, "vin rosé" urine), oral <b>deferasirox / deferiprone</b>; supportive care, whole-bowel irrigation in acute ingestion.</p>
+    <h4>Atropine (anticholinergic) poisoning</h4>
+    <p>Toxidrome: "hot, dry, red, blind, mad" (hyperthermia, dry skin, flushing, mydriasis, delirium). <b>Treatment:</b> supportive cooling, benzodiazepines for agitation, and <b>physostigmine</b> (reversible anticholinesterase crossing BBB) for severe central toxicity.</p>
+  </div></details>
+</section>
+
+<section class="sec" id="s7" style="--sec:#548a4f;--sec-soft:#548a4f26">
+  <h2>Section 7 · Other Important Topics (Overlaps)</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Current status &amp; issues with COX-2 inhibitors; note on non-endocrine uses of corticosteroids &amp; their therapeutic status in malignancy.</span></summary>
+  <div class="answer">
+    <h4>COX-2 inhibitors</h4>
+    <ul>
+      <li><b>Rationale:</b> selectively inhibit inducible COX-2 (inflammation), sparing constitutive COX-1 (gastric mucosa, platelets) → <b>fewer GI ulcers/bleeds</b>, no antiplatelet effect. Drugs: celecoxib, etoricoxib, parecoxib.</li>
+      <li><b>Issues:</b> <b>↑ cardiovascular thrombotic risk</b> (↓ vascular prostacyclin, unopposed thromboxane) → <b>rofecoxib &amp; valdecoxib withdrawn</b>; celecoxib/etoricoxib available with CV/renal cautions; renal effects &amp; hypertension as with NSAIDs.</li>
+      <li><b>Uses:</b> osteoarthritis, RA, acute pain, ankylosing spondylitis (esp. high GI-bleed risk); lowest dose, shortest duration.</li>
+    </ul>
+    <div class="recent"><b>Recent (PRECISION trial):</b> moderate-dose celecoxib CV safety comparable to naproxen/ibuprofen — partly rehabilitating the class.</div>
+    <h4>Non-endocrine uses of corticosteroids</h4>
+    <p>Inflammatory/allergic disorders, autoimmune disease (SLE, RA, vasculitis), asthma/COPD, dermatoses, IBD, nephrotic syndrome, transplant immunosuppression, cerebral oedema, anaphylaxis (adjunct), septic/refractory shock, COVID-19 (dexamethasone), and malignancy.</p>
+    <h4>Corticosteroids in malignancy</h4>
+    <p>Lympholytic → apoptosis of lymphoid cells: used in <b>ALL, lymphomas, multiple myeloma, CLL</b> (CHOP, VAD regimens); also antiemetic with chemotherapy, ↓ cerebral oedema (brain tumour/metastasis), hypercalcaemia of malignancy, appetite stimulation &amp; palliation, prevent hypersensitivity reactions to chemotherapy.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Pharmacotherapy with recent advances of: Congestive Heart Failure (ARNI &amp; SGLT-2), Type-2 Diabetes (SGLT-2 &amp; DPP-4), and acid-peptic disease &amp; PPIs (use &amp; misuse).</span></summary>
+  <div class="answer">
+    <h5>1. Congestive Heart Failure</h5>
+    <p><b>Four pillars of HFrEF:</b> <b>ARNI</b> (sacubitril/valsartan — neprilysin inhibition ↑ natriuretic peptides; superior to enalapril, PARADIGM-HF) ≫ ACEi/ARB + β-blocker (carvedilol/bisoprolol/metoprolol) + MRA (spironolactone/eplerenone) + <b>SGLT2 inhibitor</b> (dapagliflozin/empagliflozin — ↓ HF hospitalisation &amp; mortality even without diabetes). Plus loop diuretics (symptoms), ivabradine, vericiguat.</p>
+    <div class="recent"><b>Recent:</b> SGLT2 inhibitors benefit across the EF spectrum (HFpEF — EMPEROR-Preserved, DELIVER); start all four pillars early &amp; together.</div>
+
+    <h5>2. Type-2 Diabetes Mellitus</h5>
+    <p>Metformin first-line; choose add-ons by comorbidity. <b>SGLT2 inhibitors</b> — ↓ renal glucose reabsorption, weight/BP reduction, <b>cardio-renal protection</b> (used in HF/CKD even without diabetes); ADR genital infection, euglycaemic DKA. <b>DPP-4 inhibitors</b> — ↑ incretins, weight-neutral, low hypoglycaemia, CV-neutral (saxagliptin — ↑HF signal). GLP-1 RAs &amp; tirzepatide give potent glucose + weight benefit.</p>
+
+    <h5>3. Acid-peptic disease &amp; PPIs (use &amp; misuse)</h5>
+    <ul>
+      <li><b>PPIs</b> (omeprazole, pantoprazole, esomeprazole) irreversibly inhibit the gastric H⁺/K⁺-ATPase → potent acid suppression. <b>Uses:</b> peptic ulcer, GERD, H. pylori eradication, NSAID-ulcer prophylaxis, Zollinger-Ellison, stress-ulcer prophylaxis.</li>
+      <li><b>Misuse:</b> over-prescription &amp; long-term continuation without indication; lack of de-prescribing.</li>
+      <li><b>Long-term ADRs:</b> ↓ B12/Mg/Ca/iron (fracture risk), <b>C. difficile</b> &amp; pneumonia, hypomagnesaemia, ?CKD/interstitial nephritis, rebound hyperacidity, clopidogrel interaction (omeprazole-CYP2C19).</li>
+    </ul>
+    <div class="recent"><b>Recent:</b> <b>P-CABs</b> (vonoprazan, tegoprazan) — K⁺-competitive acid blockers giving faster, stronger, longer, food-independent acid suppression than PPIs; promising for refractory GERD &amp; H. pylori.</div>
+  </div></details>
+</section>
+
+<section class="sec" id="scase" style="--sec:#c06a3e;--sec-soft:#c06a3e26">
+  <h2>🩺 Clinical Case Vignettes</h2>
+  <p class="sec-note">Apply the concepts — read the scenario, decide your answer, then open to check. Filter to just these with the 🩺 Cases chip.</p>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A patient has a wound infection growing methicillin-resistant Staphylococcus aureus. Drug of choice and the resistance mechanism?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Altered penicillin-binding protein.</div>
+    <p><b>MRSA</b> resists beta-lactams via <b>PBP2a (mecA gene)</b>. Treat with <b>vancomycin</b> (or linezolid, daptomycin, ceftaroline); community MRSA may respond to co-trimoxazole/doxycycline/clindamycin.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A ventilated ICU patient develops pneumonia with Pseudomonas. Antibiotic strategy?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Intrinsic resistance.</div>
+    <p><b>Anti-pseudomonal cover</b>, often a <b>combination</b> (e.g. piperacillin-tazobactam or ceftazidime/cefepime/meropenem plus an aminoglycoside or ciprofloxacin); de-escalate per sensitivity. MDR strains → ceftolozane-tazobactam, ceftazidime-avibactam, colistin, cefiderocol.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A patient has a painful red eye, a fixed mid-dilated pupil and very high intraocular pressure after sitting in a dark cinema. Emergency management?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Lower the IOP fast.</div>
+    <p><b>Acute angle-closure glaucoma.</b> IV <b>acetazolamide + mannitol</b>, topical <b>pilocarpine + timolol</b> (with brimonidine) to lower IOP → definitive <b>laser iridotomy</b>. Avoid mydriatics/anticholinergics.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A patient on prednisolone for several months stops it abruptly and collapses with hypotension. What happened, and the rule?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> HPA-axis suppression.</div>
+    <p><b>Adrenal crisis from HPA-axis suppression.</b> Long-term steroids must be <b>tapered, not stopped abruptly</b>; give stress doses during illness/surgery; treat a crisis with IV hydrocortisone and fluids. Add bone and gastric protection for chronic use.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A patient presents 6 hours after a large paracetamol overdose. Antidote and how the need is assessed?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Glutathione replenishment.</div>
+    <p><b>N-acetylcysteine</b> (replenishes glutathione and detoxifies NAPQI) — most effective within 8 hours; plot the level on the <b>Rumack-Matthew nomogram</b>; activated charcoal if the patient presents early.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A child with anaemia, abdominal pain and developmental regression has a high blood-lead level. Treatment?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Chelation.</div>
+    <p><b>Lead poisoning</b> — chelate with <b>DMSA (succimer)</b> or <b>CaNa2-EDTA</b>; add <b>dimercaprol (BAL)</b> for encephalopathy; remove the source of exposure.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">Why was veterinary diclofenac banned in India, and what does this illustrate?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> The vulture collapse.</div>
+    <p>Diclofenac residues in cattle carcasses caused fatal <b>renal failure in vultures</b>, collapsing their populations — a landmark <b>ecopharmacology / One Health</b> example of a drug harming the environment. (Clinically, diclofenac is also nephrotoxic — avoid in CKD and the elderly.)</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">Before starting an anti-TNF biologic for severe psoriasis, which screening is essential, and why?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Latent infection.</div>
+    <p>Screen for <b>latent tuberculosis</b> (and hepatitis B/C). TNF-alpha inhibitors impair granuloma maintenance → <b>reactivation of TB</b>. Treat latent TB before or alongside the biologic.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A patient develops profuse diarrhoea after broad-spectrum antibiotics; stool tests positive for Clostridioides difficile toxin. Management?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Stop and treat.</div>
+    <p><b>Antibiotic-associated C. difficile colitis.</b> Stop the offending antibiotic; treat with <b>oral vancomycin or fidaxomicin</b> (metronidazole if mild/unavailable); <b>avoid antimotility agents</b>; recurrent disease → faecal microbiota transplant.</p>
+  </div></details>
+</section>
+
+<!-- CONTENT END -->
+  </div>
+
+  <footer>
+    Legend: ★★★ very high priority · ★★ high · ★ important · 🩺 clinical case. &nbsp;|&nbsp; Keyboard: <kbd>/</kbd> search · <kbd>R</kbd> random · <kbd>J/K</kbd> navigate · <kbd>Space</kbd> open · <kbd>D</kbd> dark. &nbsp;|&nbsp; Sources: Goodman &amp; Gilman, Katzung, Rang &amp; Dale; WHO/ICMR, GINA, ADA &amp; Indian guidelines.
+  </footer>
+</div>
+
+<script>
+  const search   = document.getElementById('search');
+  const items    = Array.from(document.querySelectorAll('details.q'));
+  const sections = Array.from(document.querySelectorAll('section.sec'));
+  const counter  = document.getElementById('counter');
+  const nohit    = document.getElementById('nohit');
+  const chips    = Array.from(document.querySelectorAll('.chip'));
+  const themeBtn = document.getElementById('theme');
+  const root     = document.documentElement;
+  let activeFilter = 'all';
+  let kbIndex = -1;
+
+  items.forEach(d=>{
+    const s = d.querySelector('.stars');
+    d.dataset.pri  = s ? (s.textContent.match(/★/g)||[]).length : 0;
+    d.dataset.type = d.classList.contains('vignette') ? 'case' : 'q';
+  });
+
+  const visible = ()=> items.filter(d=> d.style.display!=='none');
+
+  function apply(){
+    const q = search.value.trim().toLowerCase();
+    let hits = 0;
+    items.forEach(d=>{
+      const matchSearch = !q || d.textContent.toLowerCase().includes(q);
+      let matchFilter = true;
+      if(activeFilter==='case')      matchFilter = d.dataset.type==='case';
+      else if(activeFilter!=='all')  matchFilter = d.dataset.pri===activeFilter;
+      const show = matchSearch && matchFilter;
+      d.style.display = show ? '' : 'none';
+      if(show){ hits++; if(q.length>2) d.open = true; }
+    });
+    sections.forEach(s=>{
+      const any = Array.from(s.querySelectorAll('details.q')).some(d=> d.style.display!=='none');
+      s.style.display = any ? '' : 'none';
+    });
+    nohit.style.display = hits===0 ? 'block' : 'none';
+    counter.textContent = (q || activeFilter!=='all') ? hits + ' shown' : items.length + ' questions';
+    clearKb();
+  }
+
+  chips.forEach(c=> c.onclick = ()=>{
+    chips.forEach(x=> x.classList.remove('active'));
+    c.classList.add('active');
+    activeFilter = c.dataset.f;
+    apply();
+  });
+
+  let t;
+  search.addEventListener('input', ()=>{ clearTimeout(t); t = setTimeout(apply, 110); });
+
+  document.getElementById('expandAll').onclick  = ()=> visible().forEach(d=> d.open=true);
+  document.getElementById('collapseAll').onclick = ()=> items.forEach(d=> d.open=false);
+
+  function randomQ(){
+    const vis = visible(); if(!vis.length) return;
+    items.forEach(d=> d.open=false);
+    const pick = vis[Math.floor(Math.random()*vis.length)];
+    pick.open = true;
+    setKb(items.indexOf(pick));
+  }
+  document.getElementById('shuffle').onclick = randomQ;
+
+  function setTheme(mode){
+    if(mode==='dark'){ root.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
+    else { root.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
+    try{ localStorage.setItem('pyq-theme', mode); }catch(e){}
+  }
+  themeBtn.onclick = ()=> setTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
+  try{ if(localStorage.getItem('pyq-theme')==='dark') setTheme('dark'); }catch(e){}
+
+  function clearKb(){ items.forEach(d=> d.classList.remove('kbfocus')); kbIndex=-1; }
+  function setKb(i){
+    items.forEach(d=> d.classList.remove('kbfocus'));
+    kbIndex = i;
+    if(i>=0){ items[i].classList.add('kbfocus'); items[i].scrollIntoView({behavior:'smooth', block:'center'}); }
+  }
+  function moveKb(dir){
+    const vis = visible(); if(!vis.length) return;
+    let cur = kbIndex>=0 ? vis.indexOf(items[kbIndex]) : -1;
+    cur = (cur + dir + vis.length) % vis.length;
+    setKb(items.indexOf(vis[cur]));
+  }
+
+  document.addEventListener('keydown', e=>{
+    if(e.target===search){ if(e.key==='Escape'){ search.value=''; apply(); search.blur(); } return; }
+    if(e.ctrlKey||e.metaKey||e.altKey) return;
+    switch(e.key){
+      case '/': e.preventDefault(); search.focus(); break;
+      case 'r': case 'R': randomQ(); break;
+      case 'e': case 'E': visible().forEach(d=> d.open=true); break;
+      case 'c': case 'C': items.forEach(d=> d.open=false); break;
+      case 'd': case 'D': themeBtn.click(); break;
+      case 'j': case 'J': case 'ArrowDown': e.preventDefault(); moveKb(1); break;
+      case 'k': case 'K': case 'ArrowUp':   e.preventDefault(); moveKb(-1); break;
+      case ' ': case 'Enter':
+        if(kbIndex>=0){ e.preventDefault(); items[kbIndex].open = !items[kbIndex].open; }
+        break;
+    }
+  });
+
+  apply();
+</script>
+</body>
+</html>

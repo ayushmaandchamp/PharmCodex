@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miscellaneous Pharmacology — PYQ Notes</title>
+<style>
+  :root{
+    --bg:#fbfbfa; --panel:#ffffff; --ink:#1f2328;
+    --muted:#6b7280; --line:#e7e7e4; --accent:#2f6f5e; --accent-soft:#eaf4f0;
+    --star:#d99a00; --shadow:0 1px 2px rgba(0,0,0,.04),0 1px 8px rgba(0,0,0,.03);
+    --radius:10px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:40px 22px 120px}
+  header.top{margin-bottom:26px}
+  h1{font-size:1.7rem; font-weight:650; letter-spacing:-.02em; margin:0 0 4px}
+  .sub{color:var(--muted); font-size:.92rem; margin:0}
+  .tools{
+    position:sticky; top:0; z-index:20; background:rgba(251,251,250,.86);
+    backdrop-filter:blur(8px); padding:14px 0; margin:18px 0 8px;
+    border-bottom:1px solid var(--line); display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  }
+  #search{
+    flex:1; min-width:200px; padding:10px 14px; border:1px solid var(--line);
+    border-radius:var(--radius); font-size:.95rem; background:var(--panel); color:var(--ink);
+    outline:none;
+  }
+  #search:focus{border-color:var(--accent)}
+  .btn{
+    border:1px solid var(--line); background:var(--panel); color:var(--ink);
+    padding:9px 14px; border-radius:var(--radius); font-size:.85rem; cursor:pointer;
+    transition:.15s; white-space:nowrap;
+  }
+  .btn:hover{border-color:var(--accent); color:var(--accent)}
+  .count{color:var(--muted); font-size:.82rem; margin-left:2px}
+
+  .toc{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:14px 18px; margin:14px 0 28px; box-shadow:var(--shadow);
+  }
+  .toc h2{font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); margin:0 0 8px}
+  .toc a{display:block; color:var(--ink); text-decoration:none; font-size:.9rem; padding:3px 0}
+  .toc a:hover{color:var(--accent)}
+
+  section.sec{margin:34px 0}
+  .sec > h2{
+    font-size:1.12rem; font-weight:650; letter-spacing:-.01em; margin:0 0 4px;
+    padding-bottom:8px; border-bottom:2px solid var(--accent-soft);
+  }
+  .sec-note{color:var(--muted); font-size:.84rem; margin:0 0 14px}
+
+  details.q{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    margin:9px 0; box-shadow:var(--shadow); overflow:hidden; transition:border-color .15s;
+  }
+  details.q[open]{border-color:#d6e6e0}
+  summary.q-head{
+    list-style:none; cursor:pointer; padding:15px 18px; display:flex; gap:11px;
+    align-items:flex-start; font-weight:520; font-size:.97rem; user-select:none;
+  }
+  summary.q-head::-webkit-details-marker{display:none}
+  summary.q-head:hover{background:#fcfdfc}
+  .chev{flex-shrink:0; display:inline-block; width:14px; margin-top:1px; color:var(--muted); transition:transform .2s; font-size:.8rem}
+  details.q[open] .chev{transform:rotate(90deg); color:var(--accent)}
+  .stars{flex-shrink:0; color:var(--star); font-size:.8rem; letter-spacing:1px; margin-top:2px; min-width:0}
+  .q-text{flex:1}
+  .answer{
+    padding:4px 22px 20px 45px; border-top:1px solid var(--line); margin-top:-1px;
+    font-size:.93rem; color:#33383d;
+  }
+  .answer h4{
+    font-size:.86rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent);
+    margin:18px 0 7px;
+  }
+  .answer h5{font-size:.92rem; color:var(--ink); margin:14px 0 4px; font-weight:640}
+  .answer p{margin:9px 0}
+  .answer ul,.answer ol{margin:8px 0; padding-left:20px}
+  .answer li{margin:4px 0}
+  .answer b{font-weight:620}
+  .answer table{
+    width:100%; border-collapse:collapse; margin:12px 0; font-size:.85rem;
+  }
+  .answer th,.answer td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top}
+  .answer th{background:var(--accent-soft); font-weight:600}
+  .answer .dia{
+    background:#f6f8f7; border:1px dashed #c7d6d0; border-radius:8px; padding:10px 14px;
+    margin:12px 0; font-size:.85rem; color:#4a5550;
+  }
+  .answer .dia b{color:var(--accent)}
+  .recent{background:#fbf6ec; border-left:3px solid var(--star); padding:8px 14px; border-radius:0 8px 8px 0; margin:12px 0}
+  .recent b{color:#9a7000}
+  .answer code{background:#f0f2f1; padding:1px 5px; border-radius:4px; font-size:.84em}
+  .nohit{text-align:center; color:var(--muted); padding:40px; display:none}
+  mark{background:#fff2a8; padding:0 1px}
+  footer{margin-top:60px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:.8rem; text-align:center}
+  @media (max-width:560px){.wrap{padding:24px 14px 90px} .answer{padding-left:18px}}
+
+  /* ---- v2 interactive additions ---- */
+  body{transition:background .25s, color .25s}
+  .chips{display:flex; gap:7px; flex-wrap:wrap; margin:2px 0 10px}
+  .chip{border:1px solid var(--line); background:var(--panel); color:var(--muted); padding:5px 13px; border-radius:999px; font-size:.8rem; cursor:pointer; transition:.15s}
+  .chip:hover{border-color:var(--accent); color:var(--accent)}
+  .chip.active{background:var(--accent); border-color:var(--accent); color:#fff}
+  .iconbtn{font-size:1rem; line-height:1}
+  details.q.vignette{border-left:3px solid #c98a3c}
+  .badge{display:inline-block; flex-shrink:0; background:#f3e2c8; color:#8a5a16; font-size:.6rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; padding:3px 7px; border-radius:5px; margin-top:1px}
+  .kbfocus{outline:2px solid var(--accent); outline-offset:2px}
+  .answer .case-q{background:#f6f8f7; border-left:3px solid var(--accent); padding:9px 14px; border-radius:0 8px 8px 0; margin:2px 0 12px}
+  .hint{color:var(--muted); font-size:.78rem; margin:6px 0 0}
+  .hint kbd{background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:0 5px; font-size:.9em; font-family:inherit}
+  [data-theme="dark"]{--bg:#15171a; --panel:#1e2125; --ink:#e6e8ea; --muted:#9aa3ad; --line:#33373d; --accent:#5db89e; --accent-soft:#26342f; --star:#e0a93a; --shadow:0 1px 2px rgba(0,0,0,.35)}
+  [data-theme="dark"] .tools{background:rgba(21,23,26,.85)}
+  [data-theme="dark"] summary.q-head:hover{background:#23272c}
+  [data-theme="dark"] details.q[open]{border-color:#3a4a44}
+  [data-theme="dark"] .answer{color:#cfd4d8}
+  [data-theme="dark"] .answer .dia,[data-theme="dark"] .answer .case-q{background:#23282c; border-color:#3a4a44; color:#bcc4c2}
+  [data-theme="dark"] .recent{background:#2a2519}
+  [data-theme="dark"] .answer code{background:#2a2e33}
+  [data-theme="dark"] mark{background:#7a6212; color:#fff}
+  [data-theme="dark"] .badge{background:#3a2f1c; color:#e0a93a}
+
+  /* ---- per-section colour theming ---- */
+  .sec{--sec:var(--accent); --sec-soft:var(--accent-soft)}
+  .sec > h2{border-bottom:2px solid var(--sec)}
+  .sec details.q{border-left:4px solid var(--sec)}
+  .sec details.q[open]{border-left-color:var(--sec)}
+  .sec details.q[open] .chev{color:var(--sec)}
+  .sec .answer h4{color:var(--sec)}
+  .sec .answer th{background:var(--sec-soft)}
+  kbd{background:var(--panel); border:1px solid var(--line); border-radius:4px; padding:0 5px; font-size:.85em; font-family:inherit}
+  .toc a{display:flex; align-items:center}
+  .toc .dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:10px; flex-shrink:0}
+  [data-theme="dark"] .sec > h2{filter:brightness(1.35)}
+  [data-theme="dark"] .sec .answer h4{filter:brightness(1.4)}
+  [data-theme="dark"] .sec .answer th{background:rgba(255,255,255,.06)}
+  [data-theme="dark"] .toc .dot{filter:brightness(1.3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Miscellaneous Pharmacology — Consolidated PYQ Notes</h1>
+    <p class="sub">Exam-oriented model answers · Goodman &amp; Gilman, Katzung, Rang &amp; Dale + ICMR/CDSCO &amp; ICH guidelines · click any question to open the answer</p>
+  </header>
+
+  <div class="tools">
+    <input id="search" type="text" placeholder="🔍  Search… ( / )" autocomplete="off">
+    <button class="btn" id="shuffle" title="Random question (R)">🎲 Quiz me</button>
+    <button class="btn" id="expandAll" title="Expand visible (E)">Expand</button>
+    <button class="btn" id="collapseAll" title="Collapse all (C)">Collapse</button>
+    <button class="btn iconbtn" id="theme" title="Dark mode (D)">🌙</button>
+    <span class="count" id="counter"></span>
+  </div>
+  <div class="chips" id="chips">
+    <button class="chip active" data-f="all">All</button>
+    <button class="chip" data-f="3">★★★</button>
+    <button class="chip" data-f="2">★★</button>
+    <button class="chip" data-f="1">★</button>
+    <button class="chip" data-f="case">🩺 Cases</button>
+  </div>
+  <p class="hint">Shortcuts: <kbd>/</kbd> search · <kbd>R</kbd> random · <kbd>J</kbd>/<kbd>K</kbd> next/prev · <kbd>Space</kbd> open · <kbd>E</kbd>/<kbd>C</kbd> expand/collapse · <kbd>D</kbd> dark</p>
+
+  <nav class="toc" id="toc">
+    <h2>Sections</h2>
+    <a href="#s1"><span class="dot" style="background:#2f7d6a"></span>1 · Experimental Pharmacology &amp; Screening Methods</a>
+    <a href="#s2"><span class="dot" style="background:#3f6cb0"></span>2 · Biostatistics &amp; Research Methods</a>
+    <a href="#s3"><span class="dot" style="background:#845bb0"></span>3 · Clinical Trial Methodology &amp; Design</a>
+    <a href="#s4"><span class="dot" style="background:#b15068"></span>4 · Ethics in Clinical Research</a>
+    <a href="#s5"><span class="dot" style="background:#b3852f"></span>5 · Regulatory Affairs</a>
+    <a href="#s6"><span class="dot" style="background:#2f8696"></span>6 · Special &amp; Emerging Topics</a>
+    <a href="#s7"><span class="dot" style="background:#548a4f"></span>7 · Other Important Miscellaneous Topics</a>
+    <a href="#scase"><span class="dot" style="background:#c06a3e"></span>🩺 Clinical Case Vignettes</a>
+  </nav>
+
+  <p class="nohit" id="nohit">No questions match your search.</p>
+
+  <div id="content">
+<!-- CONTENT START -->
+
+<section class="sec" id="s1" style="--sec:#2f7d6a;--sec-soft:#2f7d6a26">
+  <h2>Section 1 · Experimental Pharmacology &amp; Screening Methods</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Radioimmunoassay (RIA) — principle, methodology, validation &amp; applications; compare with modern immunoassays &amp; mass spectrometry.</span></summary>
+  <div class="answer">
+    <h4>Principle</h4>
+    <p>RIA (Yalow &amp; Berson, Nobel 1977) is based on <b>competitive binding</b>: a fixed amount of <b>radiolabelled antigen</b> (e.g. ¹²⁵I) and the unlabelled antigen in the sample compete for a limited number of specific <b>antibody</b> binding sites. The more unlabelled (sample) antigen present, the less labelled antigen binds → bound radioactivity is <b>inversely proportional</b> to sample concentration.</p>
+    <h4>Methodology</h4>
+    <ol>
+      <li>Mix known labelled antigen + specific antibody + sample (unknown antigen).</li>
+      <li>Allow competitive binding to equilibrium.</li>
+      <li><b>Separate</b> bound from free antigen (charcoal, second antibody, precipitation).</li>
+      <li>Measure radioactivity of bound fraction (gamma counter).</li>
+      <li>Read concentration from a <b>standard curve</b>.</li>
+    </ol>
+    <h4>Validation parameters</h4>
+    <p>Sensitivity, specificity (cross-reactivity), precision (intra/inter-assay CV), accuracy (recovery), linearity, limit of detection.</p>
+    <h4>Applications</h4>
+    <p>Assay of hormones (insulin, thyroid, cortisol, hCG), drugs (digoxin, TDM), vitamins, tumour markers, peptides present in very low concentration.</p>
+    <h4>Comparison</h4>
+    <table>
+      <tr><th>Feature</th><th>RIA</th><th>ELISA / modern immunoassay</th><th>Mass spectrometry (LC-MS/MS)</th></tr>
+      <tr><td>Label</td><td>Radioisotope</td><td>Enzyme/fluorescent/chemiluminescent</td><td>None (mass/charge)</td></tr>
+      <tr><td>Sensitivity</td><td>Very high</td><td>High</td><td>Very high</td></tr>
+      <tr><td>Specificity</td><td>Antibody-dependent (cross-reactivity)</td><td>Antibody-dependent</td><td>Highest (structure-specific)</td></tr>
+      <tr><td>Hazard/cost</td><td>Radiation hazard, disposal, short shelf-life</td><td>Safe, cheaper</td><td>Expensive, skilled</td></tr>
+      <tr><td>Throughput</td><td>Moderate</td><td>High (automated)</td><td>Moderate</td></tr>
+    </table>
+    <p>RIA is now largely replaced by non-radioactive immunoassays (ELISA, CLIA) and LC-MS/MS for safety, automation &amp; specificity.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Actophotometer — principle, procedure, drug-class applications &amp; limitations; note on recent advances (AI &amp; home-cage monitoring).</span></summary>
+  <div class="answer">
+    <h4>Principle</h4>
+    <p>The actophotometer measures <b>spontaneous locomotor (motor) activity</b> of rodents. The chamber has photoelectric cells with light beams; each time the animal crosses a beam, the circuit is interrupted and recorded as a count — quantifying CNS stimulation or depression.</p>
+    <h4>Procedure</h4>
+    <ol>
+      <li>Place animal in the apparatus; allow brief acclimatisation.</li>
+      <li>Record baseline locomotor counts over a fixed time (e.g. 10 min).</li>
+      <li>Administer test drug; re-record activity counts.</li>
+      <li>Compare before/after (and vs control) → ↓ counts = CNS depressant; ↑ counts = CNS stimulant.</li>
+    </ol>
+    <h4>Drug-class applications</h4>
+    <ul>
+      <li><b>CNS depressants</b> (sedatives/hypnotics — benzodiazepines, barbiturates; antipsychotics) → ↓ activity.</li>
+      <li><b>CNS stimulants</b> (caffeine, amphetamine) → ↑ activity.</li>
+      <li>Screening of anxiolytics, neuroleptics, muscle relaxants.</li>
+    </ul>
+    <h4>Limitations</h4>
+    <p>Only measures gross locomotion (not specific behaviour); affected by handling stress, habituation, circadian rhythm, environment; cannot distinguish sedation from motor impairment.</p>
+    <div class="recent"><b>Recent advances:</b> <b>video-tracking software</b> (ANY-maze, EthoVision) and <b>AI/deep-learning pose-estimation</b> (DeepLabCut) give detailed behavioural analysis; automated <b>home-cage monitoring</b> systems allow continuous, stress-free, 24-h activity assessment (refinement under 3R).</div>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Bioassay — principles, classification, methodology &amp; applications; role in estimating relative potency &amp; shift toward non-animal methods.</span></summary>
+  <div class="answer">
+    <h4>Definition &amp; principle</h4>
+    <p><b>Bioassay</b> = estimation of the concentration or <b>potency</b> of a substance by measuring its biological response on living tissue/organism, compared against a standard. Principle: under controlled conditions, the magnitude of response is proportional to the dose/concentration.</p>
+    <h4>Classification</h4>
+    <ul>
+      <li><b>Quantal</b> (all-or-none — e.g. death, convulsion) vs <b>graded</b> (continuous response).</li>
+      <li><b>Direct</b> (response measured directly, e.g. digitalis cardiac arrest) vs <b>indirect</b> (response compared with standard).</li>
+      <li>Methods of comparison: matching, interpolation, bracketing, <b>three-point &amp; four-point assay</b>, multiple-point assay.</li>
+    </ul>
+    <h4>Methodology (example — four-point assay)</h4>
+    <p>Two doses each of standard (S1,S2) &amp; test (T1,T2) on the same tissue; construct parallel log dose-response lines; relative potency calculated from the horizontal distance between the lines.</p>
+    <h4>Estimating relative potency</h4>
+    <p>Relative potency = ratio of equi-effective doses of standard to test. Requires parallel log dose-response curves &amp; the same maximal effect (same mechanism).</p>
+    <h4>Applications</h4>
+    <p>Standardisation of drugs lacking chemical assays (historically insulin, heparin, oxytocin, vaccines, antisera, digitalis, d-tubocurarine), hormone potency, antibiotic assay (microbiological).</p>
+    <h4>Shift to non-animal methods</h4>
+    <p>Per 3R, animal bioassays are replaced by physicochemical (HPLC, LC-MS), immunoassays (ELISA/RIA), and cell-based/in-vitro assays — more precise, reproducible &amp; ethical.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Preclinical screening methods for analgesic, anti-inflammatory, anti-epileptic, anti-diabetic, anti-psychotic &amp; anti-peptic-ulcer agents.</span></summary>
+  <div class="answer">
+    <table>
+      <tr><th>Activity</th><th>Screening models</th></tr>
+      <tr><td><b>Analgesic</b></td><td>Tail-flick, hot-plate (central/thermal); acetic-acid writhing, formalin test, tail-clip, Randall-Selitto (inflammatory pain)</td></tr>
+      <tr><td><b>Anti-inflammatory</b></td><td>Carrageenan-induced rat paw oedema (acute), cotton-pellet granuloma (chronic), adjuvant-induced arthritis, UV erythema</td></tr>
+      <tr><td><b>Anti-epileptic</b></td><td>Maximal electroshock (MES — grand mal), pentylenetetrazol (PTZ — petit mal/absence), kindling model, 6-Hz model</td></tr>
+      <tr><td><b>Anti-diabetic</b></td><td>Alloxan / streptozotocin-induced diabetes, oral glucose tolerance test, db/db &amp; ob/ob genetic models, insulin-resistance models</td></tr>
+      <tr><td><b>Anti-psychotic</b></td><td>Apomorphine/amphetamine-induced stereotypy &amp; climbing, conditioned avoidance response, catalepsy test, prepulse inhibition</td></tr>
+      <tr><td><b>Anti-peptic-ulcer</b></td><td>Pylorus ligation (Shay rat), stress (cold-restraint) ulcer, NSAID/aspirin-induced, ethanol-induced, histamine/ cysteamine duodenal ulcer</td></tr>
+    </table>
+    <p>Each model targets the relevant mechanism &amp; allows comparison with standard drugs; increasingly supplemented/replaced by in-vitro and in-silico methods.</p>
+  </div></details>
+</section>
+
+<section class="sec" id="s2" style="--sec:#3f6cb0;--sec-soft:#3f6cb026">
+  <h2>Section 2 · Biostatistics &amp; Research Methods</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Parametric &amp; non-parametric tests in pharmacological research — Chi-square, Student's t, ANOVA, Wilcoxon, Mann-Whitney, Kaplan-Meier (applications &amp; limitations).</span></summary>
+  <div class="answer">
+    <h4>Parametric vs non-parametric</h4>
+    <table>
+      <tr><th>Parametric</th><th>Non-parametric</th></tr>
+      <tr><td>Assume normal distribution, interval/ratio data, equal variance</td><td>No distribution assumption; ordinal/skewed/small samples</td></tr>
+      <tr><td>More powerful when assumptions met</td><td>More robust, less powerful</td></tr>
+    </table>
+    <h4>Common tests &amp; applications</h4>
+    <table>
+      <tr><th>Test</th><th>Use</th><th>Type</th></tr>
+      <tr><td>Student's t-test</td><td>Compare 2 means (paired/unpaired)</td><td>Parametric</td></tr>
+      <tr><td>ANOVA</td><td>Compare &gt;2 means (one/two-way) + post-hoc</td><td>Parametric</td></tr>
+      <tr><td>Chi-square test</td><td>Association between categorical variables/proportions</td><td>Non-parametric</td></tr>
+      <tr><td>Mann-Whitney U (Wilcoxon rank-sum)</td><td>Compare 2 independent groups, ordinal/non-normal</td><td>Non-parametric</td></tr>
+      <tr><td>Wilcoxon signed-rank</td><td>Paired non-normal data</td><td>Non-parametric</td></tr>
+      <tr><td>Kruskal-Wallis</td><td>&gt;2 independent groups, non-normal</td><td>Non-parametric</td></tr>
+      <tr><td>Kaplan-Meier (log-rank)</td><td>Survival/time-to-event analysis</td><td>Survival</td></tr>
+    </table>
+    <h4>Kaplan-Meier curves</h4>
+    <p>Estimate &amp; plot the probability of survival (or any time-to-event) over time; groups compared with the <b>log-rank test</b>; Cox regression for adjusted hazard ratios. Handles censored data.</p>
+    <h4>Limitations</h4>
+    <p>Parametric tests fail if assumptions violated; non-parametric tests lose power &amp; can't easily handle complex designs; chi-square unreliable with small expected counts (use Fisher's exact); KM cannot adjust for covariates (needs Cox).</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Define meta-analysis — steps, merits, demerits, role in evidence-based medicine; compare with systematic review.</span></summary>
+  <div class="answer">
+    <h4>Definition</h4>
+    <p><b>Meta-analysis</b> = a statistical technique that <b>quantitatively combines</b> the results of multiple independent studies addressing the same question to produce a single pooled estimate of effect.</p>
+    <h4>Steps</h4>
+    <ol>
+      <li>Define focused question (PICO) &amp; protocol.</li>
+      <li>Comprehensive literature search; apply inclusion/exclusion criteria.</li>
+      <li>Assess study quality / risk of bias.</li>
+      <li>Extract data; choose effect measure (OR, RR, mean difference).</li>
+      <li>Pool using fixed- or random-effects model; assess <b>heterogeneity</b> (I², Q).</li>
+      <li>Present <b>forest plot</b>; assess publication bias (<b>funnel plot</b>); sensitivity analysis.</li>
+    </ol>
+    <h4>Merits</h4>
+    <ul><li>↑ statistical power &amp; precision, resolves conflicting studies, higher generalisability, top of evidence hierarchy, can detect small effects.</li></ul>
+    <h4>Demerits</h4>
+    <ul><li><b>Publication bias</b>, heterogeneity, "garbage in–garbage out" (poor primary studies), combining dissimilar studies (apples &amp; oranges), reliance on published data.</li></ul>
+    <h4>Systematic review vs meta-analysis</h4>
+    <table>
+      <tr><th>Systematic review</th><th>Meta-analysis</th></tr>
+      <tr><td>Comprehensive, structured qualitative synthesis of all relevant studies</td><td>Statistical pooling of quantitative data from those studies</td></tr>
+      <tr><td>May or may not include statistics</td><td>Always quantitative; usually within a systematic review</td></tr>
+    </table>
+    <p>Both sit at the <b>top of the evidence-based-medicine pyramid</b>, guiding guidelines &amp; clinical decisions.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Importance of sample size in clinical trials &amp; methods of calculation; note on confidence intervals &amp; equivalence trials.</span></summary>
+  <div class="answer">
+    <h4>Importance of sample size</h4>
+    <ul>
+      <li><b>Too small</b> → underpowered, may miss a true effect (Type II error), inconclusive, unethical (exposes subjects without yielding answers).</li>
+      <li><b>Too large</b> → wastes resources, exposes excess subjects, may detect clinically trivial differences.</li>
+      <li>Adequate size ensures sufficient <b>power</b> &amp; valid, generalisable conclusions.</li>
+    </ul>
+    <h4>Determinants &amp; calculation</h4>
+    <p>Sample size depends on: <b>effect size</b> (expected difference), <b>variability (SD)</b>, <b>significance level α</b> (usually 0.05), <b>power 1−β</b> (usually 80–90%), study design &amp; expected dropouts. Calculated using standard formulae/software (e.g. n ∝ σ²/effect²); larger for smaller effects &amp; greater variance.</p>
+    <h4>Confidence intervals (CI)</h4>
+    <p>A range (e.g. 95% CI) within which the true population value is expected to lie. Narrow CI = greater precision. More informative than p-value alone — shows magnitude &amp; direction of effect.</p>
+    <h4>Equivalence trials</h4>
+    <p>Aim to show two treatments differ by no more than a pre-defined <b>equivalence margin (±Δ)</b>. Conclusion based on whether the <b>CI of the difference lies entirely within ±Δ</b> (not on p-value). Non-inferiority trials use a one-sided margin.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Type I &amp; Type II errors (examples); interpretation of p-value; statistical vs clinical significance.</span></summary>
+  <div class="answer">
+    <h4>Type I &amp; Type II errors</h4>
+    <table>
+      <tr><th></th><th>H₀ true</th><th>H₀ false</th></tr>
+      <tr><td>Reject H₀</td><td><b>Type I (α)</b> — false positive</td><td>Correct (power)</td></tr>
+      <tr><td>Fail to reject H₀</td><td>Correct</td><td><b>Type II (β)</b> — false negative</td></tr>
+    </table>
+    <ul>
+      <li><b>Type I (α):</b> concluding a drug works when it doesn't (e.g. approving an ineffective drug); α = 0.05 conventionally.</li>
+      <li><b>Type II (β):</b> missing a real effect (e.g. rejecting an effective drug); <b>Power = 1−β</b> (≥80%).</li>
+    </ul>
+    <h4>p-value interpretation</h4>
+    <p>Probability of the observed (or more extreme) result <b>if H₀ were true</b>. p &lt; 0.05 → statistically significant. It is <b>not</b> the probability H₀ is true, nor the effect size.</p>
+    <h4>Statistical vs clinical significance</h4>
+    <p>A result can be <b>statistically significant but clinically irrelevant</b> (e.g. large trial showing 1 mmHg BP drop, p&lt;0.001) or <b>clinically important but not statistically significant</b> (small underpowered trial). Always interpret p-value with <b>effect size, confidence interval &amp; clinical context</b>.</p>
+  </div></details>
+<details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★</span><span class="q-text">Discuss the PICO framework and evidence-based medicine (EBM).</span></summary>
+  <div class="answer">
+<p><b>EBM:</b> the conscientious integration of the <b>best research evidence</b> with <b>clinical expertise</b> and <b>patient values</b>.</p>
+<h4>The 5 A's</h4><p>Ask → Acquire → Appraise → Apply → Assess.</p>
+<h4>PICO framework</h4>
+<table><tr><th>Letter</th><th>Element</th></tr>
+<tr><td>P</td><td>Population / Patient / Problem</td></tr>
+<tr><td>I</td><td>Intervention</td></tr>
+<tr><td>C</td><td>Comparison / Control</td></tr>
+<tr><td>O</td><td>Outcome</td></tr></table>
+<p>(<b>PICOT</b> adds Time / Type of study). It turns a clinical scenario into a focused, answerable question and structures the literature search.</p>
+<h4>Evidence hierarchy</h4>
+<p>Systematic reviews / meta-analyses &gt; RCTs &gt; cohort &gt; case-control &gt; case series &gt; expert opinion. Quality graded by <b>GRADE</b>.</p>
+  </div></details>
+<details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★</span><span class="q-text">Discuss the Bradford Hill criteria for assessing causation.</span></summary>
+  <div class="answer">
+<p>The <b>Bradford Hill criteria</b> help judge whether an observed association is likely <b>causal</b> (used in epidemiology and pharmacoepidemiology / ADR causality).</p>
+<table><tr><th>Criterion</th><th>Meaning</th></tr>
+<tr><td>Temporality</td><td>Cause precedes effect (<b>essential</b>)</td></tr>
+<tr><td>Strength</td><td>Large effect size / relative risk</td></tr>
+<tr><td>Consistency</td><td>Reproduced across studies/settings</td></tr>
+<tr><td>Specificity</td><td>One cause → one effect</td></tr>
+<tr><td>Biological gradient</td><td>Dose-response relationship</td></tr>
+<tr><td>Plausibility</td><td>Biologically sensible mechanism</td></tr>
+<tr><td>Coherence</td><td>Fits existing knowledge</td></tr>
+<tr><td>Experiment</td><td>Intervention alters the outcome</td></tr>
+<tr><td>Analogy</td><td>A similar known cause-effect exists</td></tr></table>
+<p>Only <b>temporality</b> is essential; the others add weight. None alone proves causation.</p>
+  </div></details>
+</section>
+
+<section class="sec" id="s3" style="--sec:#845bb0;--sec-soft:#845bb026">
+  <h2>Section 3 · Clinical Trial Methodology &amp; Design</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">RCTs — design, usefulness &amp; limitations; methods of randomization, blinding, allocation concealment &amp; sampling techniques.</span></summary>
+  <div class="answer">
+    <h4>Randomized Controlled Trial</h4>
+    <p>The <b>gold standard</b> for evaluating a new intervention: participants are randomly allocated to test vs control (placebo/standard) groups and followed prospectively for outcomes.</p>
+    <h4>Usefulness</h4>
+    <ul><li>Minimises bias &amp; confounding (known + unknown) via randomisation; allows causal inference; basis of drug approval &amp; evidence-based medicine.</li></ul>
+    <h4>Limitations</h4>
+    <ul><li>Expensive, time-consuming; strict eligibility → limited generalisability; ethical constraints (placebo); not suitable for rare diseases/long-latency outcomes; Hawthorne effect.</li></ul>
+    <h4>Methods of randomization</h4>
+    <table>
+      <tr><th>Method</th><th>Description</th></tr>
+      <tr><td>Simple</td><td>Random number table/computer (like coin toss)</td></tr>
+      <tr><td>Block</td><td>Equal group sizes within blocks</td></tr>
+      <tr><td>Stratified</td><td>Randomise within strata (age, sex, severity) to balance prognostic factors</td></tr>
+      <tr><td>Cluster</td><td>Randomise groups (clinics/villages) not individuals</td></tr>
+    </table>
+    <h4>Blinding (masking)</h4>
+    <ul><li><b>Single</b> (subject), <b>double</b> (subject + investigator), <b>triple</b> (+ analyst/assessor) — reduces performance &amp; assessment bias.</li></ul>
+    <h4>Allocation concealment</h4>
+    <p>Keeping the upcoming assignment hidden from those enrolling participants (e.g. central randomisation, SNOSE — sequentially numbered opaque sealed envelopes) → prevents <b>selection bias</b>. (Different from blinding, which occurs after allocation.)</p>
+    <h4>Sampling techniques</h4>
+    <ul><li><b>Probability:</b> simple random, systematic, stratified, cluster, multistage. <b>Non-probability:</b> convenience, purposive, quota, snowball.</li></ul>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Surrogate markers in clinical trials — attributes, merits, demerits, examples; note on biomarkers in drug evaluation.</span></summary>
+  <div class="answer">
+    <h4>Definition</h4>
+    <p>A <b>surrogate marker/endpoint</b> is a measurable substitute for a clinically meaningful endpoint that <b>predicts</b> clinical benefit/harm (e.g. using LDL-C instead of MI/death).</p>
+    <h4>Ideal attributes</h4>
+    <ul><li>Biologically plausible &amp; on the causal pathway; strongly &amp; consistently correlated with the true clinical outcome; changes with treatment in a way that reliably predicts the clinical effect; measurable, reproducible &amp; validated.</li></ul>
+    <h4>Examples</h4>
+    <table>
+      <tr><th>Surrogate</th><th>True clinical endpoint</th></tr>
+      <tr><td>Blood pressure</td><td>Stroke/MI</td></tr>
+      <tr><td>LDL-cholesterol</td><td>Cardiovascular events</td></tr>
+      <tr><td>HbA1c</td><td>Diabetic complications</td></tr>
+      <tr><td>CD4 count / HIV viral load</td><td>AIDS progression/death</td></tr>
+      <tr><td>Tumour shrinkage / progression-free survival</td><td>Overall survival</td></tr>
+      <tr><td>Bone mineral density</td><td>Fractures</td></tr>
+    </table>
+    <h4>Merits</h4>
+    <ul><li>Faster, smaller, cheaper trials; earlier results; useful when true endpoints are rare/delayed; enable accelerated approval.</li></ul>
+    <h4>Demerits</h4>
+    <ul><li>May not reliably predict clinical benefit → misleading (e.g. <b>CAST</b> — antiarrhythmics suppressed PVCs but ↑ mortality; ezetimibe early-LDL debate); miss off-target harms; require validation.</li></ul>
+    <h4>Biomarkers in drug evaluation</h4>
+    <p>Objective indicators of biological/pathological processes or drug response — used as <b>diagnostic, prognostic, predictive, pharmacodynamic &amp; safety</b> markers and <b>companion diagnostics</b> (HER2, EGFR, BRCA) to guide precision therapy.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Superiority, non-inferiority &amp; equivalence trials; note on pragmatic, academic &amp; real-world-data trials.</span></summary>
+  <div class="answer">
+    <h4>Trial objectives compared</h4>
+    <table>
+      <tr><th>Type</th><th>Aim</th><th>Conclusion based on</th></tr>
+      <tr><td><b>Superiority</b></td><td>Show new drug is <b>better</b> than comparator/placebo</td><td>Statistically significant difference</td></tr>
+      <tr><td><b>Non-inferiority</b></td><td>Show new drug is <b>not worse</b> than standard by more than margin Δ (one-sided)</td><td>CI upper bound &lt; Δ</td></tr>
+      <tr><td><b>Equivalence</b></td><td>Show new drug is <b>neither better nor worse</b> (within ±Δ)</td><td>CI lies entirely within ±Δ</td></tr>
+    </table>
+    <p>Non-inferiority/equivalence used when a new drug offers other advantages (safety, cost, convenience) and a placebo arm is unethical.</p>
+    <h4>Other designs</h4>
+    <ul>
+      <li><b>Pragmatic trials:</b> conducted in real-world routine practice, broad eligibility, flexible → high external validity/generalisability.</li>
+      <li><b>Explanatory (vs pragmatic):</b> ideal/controlled conditions → high internal validity.</li>
+      <li><b>Academic / investigator-initiated trials:</b> non-commercial, address questions industry won't (comparisons, repurposing).</li>
+      <li><b>Real-world-data (RWD/RWE) trials:</b> use EHRs, registries, claims, wearables → evidence in usual care.</li>
+    </ul>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Role of placebo in clinical trials — ethical considerations &amp; mechanisms of the placebo effect.</span></summary>
+  <div class="answer">
+    <h4>Role of placebo</h4>
+    <ul><li>An inert substance/dummy used as control to distinguish the <b>true pharmacological effect</b> from the placebo response &amp; natural course; enables blinding; establishes assay sensitivity.</li></ul>
+    <h4>Ethical considerations</h4>
+    <ul>
+      <li><b>Declaration of Helsinki:</b> placebo acceptable only when <b>no proven effective treatment exists</b>, or for compelling methodological reasons without risk of serious/irreversible harm.</li>
+      <li>When effective therapy exists, use <b>active comparator</b> or add-on (placebo + standard care).</li>
+      <li>Requires informed consent disclosing possibility of placebo.</li>
+    </ul>
+    <h4>Mechanisms of placebo effect</h4>
+    <ul>
+      <li><b>Expectation/conditioning</b> (Pavlovian), the therapeutic ritual &amp; doctor-patient relationship.</li>
+      <li>Neurobiological: <b>endogenous opioid &amp; dopamine release</b> (placebo analgesia reversed by naloxone), reduced anxiety.</li>
+      <li><b>Nocebo effect</b> = negative expectation → adverse symptoms.</li>
+    </ul>
+  </div></details>
+<details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★</span><span class="q-text">Discuss decentralized (virtual) clinical trials and real-world evidence (RWE).</span></summary>
+  <div class="answer">
+<p><b>Decentralized (virtual) clinical trials (DCTs):</b> trials in which some or all activities occur <b>away from traditional sites</b> - telemedicine visits, electronic consent, home nursing, wearable/remote monitoring and direct-to-patient drug delivery.</p>
+<h4>Advantages</h4><ul><li>Wider, more diverse recruitment; better retention and convenience; real-world relevance; accelerated by the COVID-19 pandemic.</li></ul>
+<h4>Challenges</h4><ul><li>Data integrity and standardisation, technology access/equity, privacy, regulatory acceptance.</li></ul>
+<h4>Real-world data / evidence (RWD/RWE)</h4>
+<p>Data from routine care - <b>EHRs, claims, registries, wearables</b> - analysed to generate <b>real-world evidence</b> on effectiveness and safety; supports label expansion, post-marketing surveillance and regulatory decisions. <b>Pragmatic trials</b> bridge RCTs and real-world practice.</p>
+  </div></details>
+<details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★</span><span class="q-text">Discuss the CONSORT statement and its importance in clinical-trial reporting.</span></summary>
+  <div class="answer">
+<p><b>CONSORT</b> = <b>Consolidated Standards of Reporting Trials</b> - an evidence-based <b>25-item checklist</b> plus a <b>flow diagram</b> for transparent reporting of parallel-group randomized controlled trials.</p>
+<h4>Coverage</h4>
+<ul><li>Title/abstract; introduction; <b>methods</b> (design, randomisation, allocation concealment, blinding, sample size); <b>results</b> (participant flow, baseline data, outcomes and estimation, harms); discussion and registration.</li>
+<li><b>Flow diagram:</b> Enrollment → Allocation → Follow-up → Analysis, with numbers and exclusions at each step.</li></ul>
+<h4>Importance</h4>
+<p>Improves transparency and reproducibility, reduces selective reporting/bias, and aids critical appraisal. Related: <b>PRISMA</b> (systematic reviews), <b>STROBE</b> (observational), <b>SPIRIT</b> (protocols), plus CONSORT extensions.</p>
+  </div></details>
+</section>
+
+<section class="sec" id="s4" style="--sec:#b15068;--sec-soft:#b1506826">
+  <h2>Section 4 · Ethics in Clinical Research</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Evolution of ethical issues in clinical research &amp; principles of the Declaration of Helsinki; composition, roles &amp; responsibilities of IEC per ICMR &amp; NDCT Rules 2019.</span></summary>
+  <div class="answer">
+    <h4>Evolution of research ethics</h4>
+    <ul>
+      <li><b>Nuremberg Code (1947)</b> — after Nazi experiments; voluntary consent essential.</li>
+      <li><b>Declaration of Helsinki (1964, WMA, revised)</b> — ethical principles for medical research.</li>
+      <li><b>Belmont Report (1979)</b> — respect for persons, beneficence, justice (after Tuskegee syphilis study).</li>
+      <li><b>ICH-GCP (1996); ICMR guidelines (India, latest 2017); NDCT Rules 2019.</b></li>
+    </ul>
+    <h4>Key principles of the Declaration of Helsinki</h4>
+    <ul><li>Welfare of the subject over science/society; informed consent; independent ethics review; favourable risk-benefit; protection of vulnerable groups; scientific validity; competent investigators; confidentiality; registration &amp; publication of results; post-trial access.</li></ul>
+    <h4>Four core ethical principles</h4>
+    <p>Autonomy, beneficence, non-maleficence, justice.</p>
+    <h4>IEC composition (ICMR/NDCT Rules 2019)</h4>
+    <ul>
+      <li>Minimum <b>7 members</b> (quorum ~5): Chairperson (external), Member-Secretary; basic medical scientist; clinician(s); <b>legal expert</b>; <b>social scientist/philosopher/ethicist</b>; <b>lay person</b> from community.</li>
+      <li>Balance of gender; majority non-affiliated/independent; must be <b>registered with CDSCO/DCGI</b>.</li>
+    </ul>
+    <h4>Roles &amp; responsibilities</h4>
+    <ul><li>Protect rights, safety &amp; well-being of participants; review &amp; approve protocol, consent documents, investigator qualifications, compensation; <b>continuing review</b> &amp; monitoring; review SAEs &amp; decide compensation; maintain records; can suspend/terminate non-compliant studies.</li></ul>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Informed consent in clinical trials — ethical issues in vulnerable populations; note on compensation for trial-related injury/death.</span></summary>
+  <div class="answer">
+    <h4>Informed consent</h4>
+    <p>A voluntary process by which a competent participant, after understanding all relevant information, agrees to take part. Essential elements:</p>
+    <ul>
+      <li>Purpose, procedures, duration; risks &amp; benefits; alternatives; confidentiality.</li>
+      <li>Voluntary participation &amp; right to withdraw anytime without penalty; compensation provisions; contact details.</li>
+      <li>Documented on a signed/thumb-impression <b>Informed Consent Form (ICF)</b> in a language the subject understands; <b>audio-video recording</b> required for vulnerable subjects (NDCT Rules).</li>
+    </ul>
+    <h4>Vulnerable populations &amp; issues</h4>
+    <ul>
+      <li>Groups: children, pregnant women, mentally ill, prisoners, illiterate/poor, terminally ill, students/employees (subordinates).</li>
+      <li>Risk of <b>coercion, undue inducement, therapeutic misconception</b>, impaired capacity.</li>
+      <li>Safeguards: legally acceptable representative/assent (children), impartial witness for illiterate, extra IEC scrutiny, justify their inclusion.</li>
+    </ul>
+    <h4>Compensation (NDCT Rules 2019, India)</h4>
+    <ul>
+      <li>Mandatory <b>free medical management</b> for trial-related injury (as long as required).</li>
+      <li>Financial compensation for trial-related injury/disability/death — sponsor liable; formula prescribed by CDSCO; decided by IEC &amp; DCGI.</li>
+      <li>Compensation even if injury is due to placebo (where applicable), failure of investigational product, or protocol-related procedures.</li>
+    </ul>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">GCP guidelines — principles &amp; advantages; note on protocol violation vs protocol deviation.</span></summary>
+  <div class="answer">
+    <h4>Good Clinical Practice (GCP)</h4>
+    <p>An international (ICH-E6) ethical &amp; scientific quality standard for designing, conducting, recording &amp; reporting trials involving human subjects. India has its own GCP guidelines (CDSCO/ICMR).</p>
+    <h4>Key principles</h4>
+    <ul>
+      <li>Trials conducted per Declaration of Helsinki &amp; GCP; benefits justify risks.</li>
+      <li>Rights, safety &amp; well-being of subjects prevail over science.</li>
+      <li>Adequate preclinical/clinical information; sound scientific protocol with IEC approval.</li>
+      <li>Qualified investigators; freely given informed consent; accurate recording (ALCOA — Attributable, Legible, Contemporaneous, Original, Accurate); confidentiality; investigational products made per GMP; quality systems.</li>
+    </ul>
+    <h4>Advantages</h4>
+    <ul><li>Protects subjects, ensures data credibility &amp; integrity, global acceptance/harmonisation of data, regulatory compliance, public trust.</li></ul>
+    <h4>Protocol violation vs deviation</h4>
+    <table>
+      <tr><th>Protocol deviation</th><th>Protocol violation</th></tr>
+      <tr><td>Minor, unintended departure not affecting subject rights/safety or data integrity</td><td>Serious/repeated departure that affects subject safety, rights or data integrity</td></tr>
+      <tr><td>e.g. a missed non-critical visit/lab within window</td><td>e.g. enrolling ineligible subject, dosing error, no valid consent</td></tr>
+      <tr><td>Documented &amp; reported routinely</td><td>Reported promptly to IEC/sponsor; may need corrective action</td></tr>
+    </table>
+  </div></details>
+<details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Discuss publication ethics - plagiarism, research misconduct and authorship.</span></summary>
+  <div class="answer">
+<p><b>Publication ethics</b> governs integrity in research reporting; breaches constitute <b>research misconduct</b>.</p>
+<h4>Research misconduct - "FFP"</h4>
+<ul><li><b>Fabrication</b> - making up data.</li><li><b>Falsification</b> - manipulating/altering data or images.</li><li><b>Plagiarism</b> - using others' work or ideas without attribution (includes self-plagiarism and mosaic plagiarism; detected by iThenticate/Turnitin).</li></ul>
+<h4>Authorship (ICMJE criteria)</h4>
+<p>All four: substantial contribution; drafting/revising; final approval; accountability. <b>Ghost, gift and guest authorship</b> are unethical.</p>
+<h4>Other issues</h4>
+<ul><li>Duplicate/redundant publication, <b>salami slicing</b>, image manipulation, undisclosed conflict of interest, predatory journals.</li>
+<li>Oversight: <b>COPE</b> guidelines, ICMR ethical guidelines, institutional research-integrity committees; consequences include correction/retraction.</li></ul>
+  </div></details>
+</section>
+
+<section class="sec" id="s5" style="--sec:#b3852f;--sec-soft:#b3852f26">
+  <h2>Section 5 · Regulatory Affairs</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Salient features of New Drugs &amp; Clinical Trial (NDCT) Rules 2019; orphan drugs, expedited approval; provisions under Schedule Y &amp; Schedule H.</span></summary>
+  <div class="answer">
+    <h4>NDCT Rules 2019 — salient features</h4>
+    <ul>
+      <li>Notified under the Drugs &amp; Cosmetics Act; <b>consolidated framework</b> for new drugs &amp; clinical trials in India (largely superseding Schedule Y).</li>
+      <li><b>Defined timelines:</b> trial approval within ~90 days; <b>deemed approval</b> in 30 days for applications using Indian data if no query.</li>
+      <li>Mandatory <b>registration of Ethics Committees</b>; strengthened informed consent &amp; <b>compensation</b> for trial injury/death.</li>
+      <li>Provisions for <b>orphan drugs</b>, <b>expedited/accelerated approval</b>, waiver of local trials in special situations, academic/investigator trials with lighter requirements.</li>
+      <li>Predictable, transparent, ethical conduct; pre- &amp; post-submission meetings with CDSCO.</li>
+    </ul>
+    <h4>Orphan drugs</h4>
+    <p>Drugs for <b>rare diseases</b> (defined under National Policy for Rare Diseases). NDCT Rules give incentives: fee waivers, possible local-trial waivers, expedited review.</p>
+    <h4>Expedited drug approval</h4>
+    <p>For drugs treating <b>serious/life-threatening or rare diseases</b> or with unmet need / major therapeutic advance — may allow approval on Phase II data with Phase IV commitment, accelerated/conditional approval.</p>
+    <h4>Schedule Y &amp; Schedule H</h4>
+    <ul>
+      <li><b>Schedule Y:</b> earlier requirements &amp; guidelines for clinical trials, import/manufacture of new drugs (data, phases, responsibilities) — now largely incorporated into NDCT Rules 2019.</li>
+      <li><b>Schedule H / H1:</b> list of <b>prescription-only drugs</b>; <b>H1</b> covers specified antibiotics, habit-forming &amp; certain drugs requiring a separate register/retention of prescription to curb misuse &amp; AMR.</li>
+    </ul>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Essential Medicines concept &amp; NLEM; note on pharmacoeconomics &amp; cost-effectiveness analysis.</span></summary>
+  <div class="answer">
+    <h4>Essential medicines concept (WHO)</h4>
+    <p>Essential medicines <b>satisfy the priority healthcare needs of the population</b>, selected by disease prevalence, evidence of efficacy &amp; safety, and comparative cost-effectiveness; should be <b>available at all times, in adequate amounts, appropriate dosage forms, assured quality &amp; affordable price.</b></p>
+    <h4>NLEM (India)</h4>
+    <ul>
+      <li><b>National List of Essential Medicines</b> — periodically revised (latest 2022, ~384 medicines).</li>
+      <li>Guides procurement, supply, prescribing &amp; rational use; linked to <b>price control</b> via DPCO/NPPA (medicines in NLEM come under the Schedule-I ceiling-price regulation).</li>
+      <li>Criteria for inclusion: relevance to public health, proven efficacy/safety, cost-effectiveness, single drug preferred.</li>
+    </ul>
+    <h4>Pharmacoeconomics &amp; cost-effectiveness</h4>
+    <table>
+      <tr><th>Method</th><th>Outcome</th><th>Result</th></tr>
+      <tr><td>Cost-minimisation</td><td>Outcomes equal</td><td>Compare cost only</td></tr>
+      <tr><td>Cost-effectiveness (CEA)</td><td>Natural units (life-years)</td><td>Cost per unit effect (ICER)</td></tr>
+      <tr><td>Cost-utility (CUA)</td><td>QALY/DALY</td><td>Cost per QALY</td></tr>
+      <tr><td>Cost-benefit (CBA)</td><td>Monetary value</td><td>Benefit:cost ratio</td></tr>
+    </table>
+    <p><b>CEA</b> compares the relative cost &amp; health outcomes of interventions (ICER = ΔCost/ΔEffect) to inform reimbursement/policy (HTA, HTAIn in India).</p>
+  </div></details>
+<details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★</span><span class="q-text">Discuss off-label use of drugs - concept, examples, and ethical/regulatory aspects.</span></summary>
+  <div class="answer">
+<p><b>Off-label use</b> = prescribing an approved drug for an <b>unapproved indication, age group, dose or route</b>.</p>
+<h4>Where common</h4><p>Paediatrics, oncology, psychiatry, pregnancy and rare diseases (few approved options).</p>
+<h4>Examples</h4>
+<ul><li>Propranolol for infantile haemangioma; amitriptyline/gabapentinoids for neuropathic pain; spironolactone for acne/hirsutism; low-dose aspirin in pregnancy.</li></ul>
+<h4>Ethical and regulatory aspects</h4>
+<ul><li>Generally <b>legal</b> when based on sound clinical judgement, but needs reasonable <b>evidence</b>, <b>informed consent</b> and documentation.</li>
+<li>Manufacturers <b>may not promote</b> off-label uses; the prescriber bears greater liability; adverse events should be reported (pharmacovigilance).</li></ul>
+  </div></details>
+</section>
+
+<section class="sec" id="s6" style="--sec:#2f8696;--sec-soft:#2f869626">
+  <h2>Section 6 · Special &amp; Emerging Topics</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Gene therapy — principles &amp; applications; approved gene therapies, challenges &amp; recent advances (incl. miRNA &amp; siRNA).</span></summary>
+  <div class="answer">
+    <h4>Principle</h4>
+    <p>Introduction, removal, or modification of genetic material in a patient's cells to treat/prevent disease — by replacing a faulty gene, silencing a harmful one, or editing the genome.</p>
+    <h4>Approaches</h4>
+    <ul>
+      <li><b>Gene augmentation</b> (add functional copy — recessive disorders).</li>
+      <li><b>Gene silencing</b> (siRNA, antisense, miRNA — dominant/gain-of-function).</li>
+      <li><b>Gene editing</b> (CRISPR-Cas9, base/prime editing).</li>
+      <li><b>Vectors:</b> viral (AAV, lentivirus, adenovirus) &amp; non-viral (lipid nanoparticles); <b>ex-vivo</b> vs <b>in-vivo</b> delivery.</li>
+    </ul>
+    <h4>RNA-based therapeutics</h4>
+    <ul>
+      <li><b>siRNA</b> (small interfering RNA): degrades target mRNA via RISC → e.g. <b>patisiran</b> (hATTR amyloidosis), <b>inclisiran</b> (↓LDL), givosiran.</li>
+      <li><b>miRNA</b> (microRNA): endogenous regulators; miRNA mimics/antagomirs under development.</li>
+      <li><b>Antisense oligonucleotides:</b> nusinersen (SMA), mipomersen.</li>
+    </ul>
+    <h4>Approved gene therapies (examples)</h4>
+    <table>
+      <tr><th>Product</th><th>Disease</th></tr>
+      <tr><td>Luxturna (voretigene)</td><td>RPE65 retinal dystrophy</td></tr>
+      <tr><td>Zolgensma (onasemnogene)</td><td>Spinal muscular atrophy</td></tr>
+      <tr><td>Hemgenix / Roctavian</td><td>Haemophilia B / A</td></tr>
+      <tr><td>Casgevy (CRISPR)</td><td>Sickle cell / β-thalassaemia</td></tr>
+      <tr><td>CAR-T (Kymriah, Yescarta)</td><td>Leukaemia / lymphoma</td></tr>
+    </table>
+    <h4>Challenges</h4>
+    <p>Very high cost, immunogenicity, durability, insertional mutagenesis, efficient delivery, off-target effects, ethics (germline editing).</p>
+    <div class="recent"><b>Recent:</b> 2023 — first CRISPR therapy (Casgevy) approved; expanding siRNA/LNP &amp; in-vivo base-editing pipelines.</div>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★★</span><span class="q-text">Role of AI in drug development &amp; research; note on HTS, reverse pharmacology &amp; translational pharmacology.</span></summary>
+  <div class="answer">
+    <h4>AI in drug development</h4>
+    <table>
+      <tr><th>Stage</th><th>AI application</th></tr>
+      <tr><td>Target identification</td><td>Mine genomic/proteomic &amp; literature data</td></tr>
+      <tr><td>Hit/lead discovery</td><td>Virtual screening, generative de-novo molecule design</td></tr>
+      <tr><td>Structure prediction</td><td><b>AlphaFold</b> protein structures</td></tr>
+      <tr><td>ADMET/toxicity</td><td>Predict PK &amp; toxicity early</td></tr>
+      <tr><td>Clinical trials</td><td>Patient selection, site/recruitment optimisation, RWD analysis</td></tr>
+      <tr><td>Repurposing &amp; pharmacovigilance</td><td>Signal detection, drug repositioning</td></tr>
+    </table>
+    <p>Benefits: faster, cheaper, ↓ attrition (e.g. Insilico Medicine's AI-designed IPF candidate; BenevolentAI baricitinib for COVID-19). Limitations: data quality/bias, "black box," validation &amp; regulatory acceptance.</p>
+    <h4>High-throughput screening (HTS)</h4>
+    <p>Robotic, miniaturised (384/1536-well) assay of huge compound libraries against a target to rapidly identify "hits"; combined with high-content imaging &amp; AI triage.</p>
+    <h4>Reverse pharmacology</h4>
+    <p>"Bedside-to-bench": start from a clinical/traditional observation of efficacy, then identify the mechanism/target — efficient, strong in Indian/Ayurvedic research (e.g. artemisinin, reserpine).</p>
+    <h4>Translational pharmacology</h4>
+    <p>"Bench-to-bedside (&amp; back)": converting basic research findings into clinical applications using biomarkers, PK/PD modelling, and back-translation of clinical observations — bridges discovery and patient care.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Stem cell therapy — clinical applications, current scenario in India &amp; regenerative therapy.</span></summary>
+  <div class="answer">
+    <h4>Types of stem cells</h4>
+    <ul><li>Embryonic, adult (haematopoietic, mesenchymal), <b>induced pluripotent stem cells (iPSCs)</b>, perinatal (cord blood).</li></ul>
+    <h4>Clinical applications</h4>
+    <table>
+      <tr><th>Established</th><th>Emerging/experimental</th></tr>
+      <tr><td>Haematopoietic stem-cell transplant (leukaemia, lymphoma, aplastic anaemia, thalassaemia); corneal limbal stem cells; skin grafts</td><td>Spinal cord injury, MI/heart failure, diabetes (islet regeneration), Parkinson's, osteoarthritis, GVHD (MSCs)</td></tr>
+    </table>
+    <h4>Regenerative therapy</h4>
+    <p>Repair/replace damaged tissue using stem cells, tissue engineering &amp; scaffolds, growth factors, and gene-modified cells → restore function.</p>
+    <h4>Current scenario in India</h4>
+    <ul>
+      <li><b>ICMR-DBT National Guidelines for Stem Cell Research (2017)</b> regulate the field.</li>
+      <li>Only <b>HSCT is an approved therapy</b>; most other stem-cell uses are <b>investigational</b> — must be in approved clinical trials. Unproven "stem-cell clinics" are prohibited/cautioned.</li>
+    </ul>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Chronopharmacology &amp; clinical significance (examples); note on photopharmacology.</span></summary>
+  <div class="answer">
+    <h4>Chronopharmacology</h4>
+    <p>Study of how <b>biological (circadian) rhythms</b> influence drug action &amp; how drug timing affects efficacy/toxicity. Includes <b>chronokinetics</b> (rhythm in ADME) &amp; <b>chronodynamics</b> (rhythm in response).</p>
+    <h4>Clinical significance &amp; examples</h4>
+    <table>
+      <tr><th>Drug</th><th>Optimal timing / rationale</th></tr>
+      <tr><td>Statins (short-acting)</td><td>Evening — cholesterol synthesis peaks at night</td></tr>
+      <tr><td>Antihypertensives</td><td>Some at bedtime — control early-morning BP surge</td></tr>
+      <tr><td>Corticosteroids</td><td>Morning — mimic cortisol rhythm, ↓ HPA suppression</td></tr>
+      <tr><td>Aspirin (antiplatelet)</td><td>Bedtime — morning MI risk</td></tr>
+      <tr><td>PPIs</td><td>Before breakfast — pump activation</td></tr>
+      <tr><td>Anti-asthma</td><td>Evening — nocturnal bronchoconstriction</td></tr>
+      <tr><td>Chemotherapy (chronotherapy)</td><td>Timed to spare normal cells / ↑ tumour kill</td></tr>
+    </table>
+    <h4>Photopharmacology (note)</h4>
+    <p>Use of <b>light to control drug activity</b> — drugs incorporating photoswitches (e.g. azobenzene) that change conformation &amp; activity on illumination → spatial &amp; temporal control of drug action (e.g. light-activated local effect, reducing systemic toxicity). Largely experimental (photoswitchable antibiotics, channel blockers).</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Teratogenicity testing methods &amp; perinatal pharmacology; note on drugs safe vs contraindicated in pregnancy &amp; lactation.</span></summary>
+  <div class="answer">
+    <h4>Teratogenicity testing (reproductive toxicity — ICH segments)</h4>
+    <ul>
+      <li><b>Segment I:</b> fertility &amp; early embryonic development (pre-mating to implantation).</li>
+      <li><b>Segment II:</b> embryo-foetal development / <b>teratogenicity</b> (organogenesis) — main test, in 2 species (rat + rabbit).</li>
+      <li><b>Segment III:</b> peri- &amp; post-natal development (late gestation to lactation/weaning).</li>
+      <li>Alternatives: whole-embryo culture, zebrafish, embryonic stem-cell test, in-silico.</li>
+    </ul>
+    <h4>Perinatal pharmacology</h4>
+    <p>Drug handling differs across pregnancy (↑ volume, ↑ GFR, altered metabolism, placental transfer), foetus (immature enzymes/BBB), neonate (immature renal/hepatic function — e.g. chloramphenicol "grey baby") &amp; lactation (drug excretion in milk).</p>
+    <h4>Drugs in pregnancy</h4>
+    <table>
+      <tr><th>Relatively safe</th><th>Contraindicated (teratogenic)</th></tr>
+      <tr><td>Paracetamol, penicillins/cephalosporins, insulin, methyldopa, labetalol, levothyroxine, folic acid, heparin</td><td>Thalidomide, isotretinoin/retinoids, warfarin, ACEi/ARB, valproate, phenytoin, methotrexate, tetracyclines, aminoglycosides, lithium, live vaccines, danazol</td></tr>
+    </table>
+    <p>(Old FDA A/B/C/D/X categories replaced by the PLLR narrative labelling, 2015.)</p>
+    <h4>Drugs in lactation</h4>
+    <p><b>Avoid:</b> cytotoxics, lithium, amiodarone, chloramphenicol, radioactive iodine, ergotamine, high-dose CNS drugs. Prefer drugs with low milk transfer; time dosing after feeds.</p>
+  </div></details>
+</section>
+
+<section class="sec" id="s7" style="--sec:#548a4f;--sec-soft:#548a4f26">
+  <h2>Section 7 · Other Important Miscellaneous Topics</h2>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Antioxidants &amp; their role in health and disease; note on prokinetics, potassium-channel openers &amp; chloride-channel activators.</span></summary>
+  <div class="answer">
+    <h4>Antioxidants</h4>
+    <ul>
+      <li>Neutralise reactive oxygen species (ROS)/free radicals implicated in ageing, atherosclerosis, cancer, neurodegeneration, ischaemia-reperfusion injury.</li>
+      <li><b>Endogenous:</b> superoxide dismutase, catalase, glutathione peroxidase. <b>Exogenous/dietary:</b> vitamins C &amp; E, β-carotene, selenium, flavonoids, N-acetylcysteine, alpha-lipoic acid, coenzyme Q10.</li>
+      <li><b>Clinical use:</b> NAC (paracetamol poisoning, mucolytic), vitamin E (some uses), antioxidants in ophthalmology (AREDS for AMD). Note: high-dose antioxidant supplements have not consistently shown benefit &amp; may even harm.</li>
+    </ul>
+    <h4>Prokinetics</h4>
+    <p>Enhance GI motility: metoclopramide &amp; domperidone (D2 antagonists), <b>5-HT4 agonists</b> (mosapride, prucalopride, cisapride-restricted), erythromycin (motilin agonist). Uses: GERD, gastroparesis, functional dyspepsia, constipation. ADR: extrapyramidal (metoclopramide), QT prolongation.</p>
+    <h4>Potassium-channel openers</h4>
+    <p>Open K-ATP channels → hyperpolarisation → smooth-muscle relaxation: <b>minoxidil</b> (resistant HTN, alopecia), <b>nicorandil</b> (angina — also NO donor), <b>diazoxide</b> (hypertensive emergency, hypoglycaemia/insulinoma). Pancreatic K-ATP is the sulfonylurea target.</p>
+    <h4>Chloride-channel activators</h4>
+    <p><b>Lubiprostone</b> activates intestinal ClC-2 chloride channels → ↑ fluid secretion → used in chronic constipation &amp; IBS-C; <b>ivacaftor</b> (CFTR potentiator) for cystic fibrosis.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Pharmacoepidemiology; Materiovigilance (MvPI), Haemovigilance &amp; Cosmetovigilance.</span></summary>
+  <div class="answer">
+    <h4>Pharmacoepidemiology</h4>
+    <p>The study of the <b>use and effects (beneficial &amp; adverse) of drugs in large populations.</b> Combines pharmacology + epidemiology. Methods: cohort, case-control, cross-sectional studies, drug-utilisation reviews, database/record-linkage studies. Uses: post-marketing surveillance, ADR quantification, risk-benefit &amp; outcomes research, policy.</p>
+    <h4>"Vigilance" programmes of India</h4>
+    <table>
+      <tr><th>Programme</th><th>Monitors</th><th>Coordinating centre</th></tr>
+      <tr><td><b>PvPI</b> (Pharmacovigilance)</td><td>Adverse drug reactions</td><td>IPC, Ghaziabad</td></tr>
+      <tr><td><b>MvPI</b> (Materiovigilance)</td><td>Adverse events from <b>medical devices</b></td><td>IPC, Ghaziabad (2015)</td></tr>
+      <tr><td><b>Haemovigilance</b> (HvPI)</td><td>Adverse reactions from <b>blood &amp; blood products</b>/transfusion</td><td>NIB, Noida</td></tr>
+      <tr><td><b>Cosmetovigilance</b></td><td>Adverse effects of <b>cosmetics</b></td><td>(emerging)</td></tr>
+    </table>
+    <p>All aim to improve patient safety through systematic detection, reporting &amp; analysis of adverse events in their domain.</p>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Intellectual Property Rights (IPR), patents &amp; issues in drug development; note on chiral drugs &amp; their significance.</span></summary>
+  <div class="answer">
+    <h4>IPR &amp; patents</h4>
+    <ul>
+      <li><b>Patent:</b> exclusive right for an invention (20 years from filing) — incentivises R&amp;D investment.</li>
+      <li><b>TRIPS</b> &amp; <b>Indian Patents Act 1970 (amended 2005)</b> — product patents; <b>Section 3(d)</b> prevents "evergreening" (Novartis-Glivec case).</li>
+      <li><b>Compulsory licensing</b> for public health (Natco-Bayer sorafenib); data exclusivity; Bayh-Dole Act (US — academic patents).</li>
+      <li>Issues: high drug prices vs access, evergreening, biopiracy (Traditional Knowledge Digital Library), patent cliffs &amp; generics/biosimilars.</li>
+    </ul>
+    <h4>Chiral drugs &amp; their significance</h4>
+    <ul>
+      <li><b>Chirality:</b> molecules existing as non-superimposable mirror-image <b>enantiomers</b> (R/S); often one is active (eutomer), the other inactive or harmful (distomer).</li>
+      <li><b>Examples:</b> S-thalidomide teratogenic vs R-sedative; levodopa (only L active); esomeprazole (S-omeprazole); levosalbutamol; dexketoprofen; escitalopram.</li>
+      <li><b>"Chiral switch":</b> marketing a single active enantiomer of an existing racemate → better efficacy/safety, fewer side effects, and patent extension.</li>
+      <li>Regulators require characterisation of each enantiomer's pharmacology.</li>
+    </ul>
+  </div></details>
+
+  <details class="q"><summary class="q-head"><span class="chev">▸</span><span class="stars">★★</span><span class="q-text">Medication errors, medication adherence/patient compliance &amp; strategies to improve them.</span></summary>
+  <div class="answer">
+    <h4>Medication errors</h4>
+    <ul>
+      <li><b>Definition:</b> any preventable event that may cause inappropriate medication use or patient harm while the drug is in the control of the professional/patient.</li>
+      <li><b>Stages:</b> prescribing, transcribing, dispensing, administration, monitoring.</li>
+      <li><b>Causes:</b> illegible/verbal orders, LASA (look-alike sound-alike) drugs, abbreviations, calculation errors, workload/fatigue, poor communication.</li>
+      <li><b>Prevention:</b> CPOE + clinical decision support, e-prescribing, barcode administration, Tall-Man lettering, "five rights," medication reconciliation, pharmacist review, non-punitive reporting &amp; root-cause analysis (WHO "Medication Without Harm").</li>
+    </ul>
+    <h4>Medication adherence / compliance</h4>
+    <ul>
+      <li><b>Adherence:</b> extent to which patient's behaviour matches agreed recommendations (preferred term — implies patient agreement); <b>compliance</b> implies passive following.</li>
+      <li><b>Causes of non-adherence:</b> complex regimens, polypharmacy, side effects, cost, poor understanding, asymptomatic disease, forgetfulness, poor doctor-patient relationship.</li>
+    </ul>
+    <h4>Strategies to improve adherence</h4>
+    <ul>
+      <li>Simplify regimen (once-daily, <b>fixed-dose combinations</b>, long-acting formulations).</li>
+      <li>Patient education &amp; counselling; shared decision-making.</li>
+      <li>Reminders (apps, alarms, pill organisers, blister/calendar packs), directly observed therapy (DOTS in TB).</li>
+      <li>Manage side effects &amp; cost; involve family/pharmacist; follow-up &amp; monitoring.</li>
+    </ul>
+  </div></details>
+</section>
+
+<section class="sec" id="scase" style="--sec:#c06a3e;--sec-soft:#c06a3e26">
+  <h2>🩺 Clinical Case Vignettes</h2>
+  <p class="sec-note">Apply the concepts — read the scenario, decide your answer, then open to check. Filter to just these with the 🩺 Cases chip.</p>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">You are designing a trial of a new antihypertensive. Which features minimise bias?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Randomise, conceal, blind.</div>
+    <p><b>Randomisation</b> (balances confounders), <b>allocation concealment</b> (hides the upcoming assignment → reduces selection bias), <b>blinding</b> (subject/investigator/assessor → reduces performance and detection bias), adequate <b>sample size/power</b>, intention-to-treat analysis, and an appropriate control.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A very large trial shows a new drug lowers BP by 1 mmHg, p<0.001. Is it worth using?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Statistical versus clinical significance.</div>
+    <p><b>Statistically significant but clinically trivial.</b> A small p only means the result is unlikely by chance; with large samples, tiny effects reach significance. Judge by <b>effect size, confidence interval and clinical relevance</b>, not the p-value alone.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">An illiterate, seriously ill patient is being enrolled in a trial. Which consent safeguards apply?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Vulnerability.</div>
+    <p>Consent in an understandable language with an <b>impartial witness</b> and thumb impression; <b>audio-video recording</b> of consent (NDCT Rules for vulnerable subjects); ensure voluntariness (no coercion/undue inducement), capacity and the right to withdraw; extra ethics-committee scrutiny.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">Antiarrhythmics suppressed PVCs (a surrogate marker) after myocardial infarction but increased deaths in a trial. What does this teach?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> The CAST trial.</div>
+    <p>The <b>CAST trial</b> — a <b>surrogate endpoint</b> (PVC suppression) failed to predict clinical benefit and masked harm (increased mortality). Surrogates must be <b>validated</b> and confirmed against hard clinical outcomes.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A woman with epilepsy on valproate is planning pregnancy. Advice?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Teratogenicity.</div>
+    <p><b>Valproate is highly teratogenic</b> (neural-tube defects, neurodevelopmental harm) — switch pre-conception to a safer agent (e.g. lamotrigine/levetiracetam) and give <b>high-dose folic acid</b>. Other key teratogens: warfarin, ACEi/ARB, isotretinoin, methotrexate, tetracyclines.</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">Why was esomeprazole marketed when omeprazole already existed, and what is the underlying concept?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Enantiomers.</div>
+    <p><b>Chirality</b> — omeprazole is a racemate; <b>esomeprazole is the purified S-enantiomer</b> (eutomer) with more predictable metabolism and efficacy (a 'chiral switch', which also extends patent life). Enantiomers can differ in activity/toxicity (e.g. S- versus R-thalidomide; levosalbutamol).</p>
+  </div></details>
+  <details class="q vignette"><summary class="q-head"><span class="chev">▸</span><span class="badge">🩺 Case</span><span class="q-text">A small trial finds no significant difference between two drugs. Can we conclude they are equivalent?</span></summary>
+  <div class="answer">
+    <div class="case-q"><b>Clue:</b> Power.</div>
+    <p>No — a small/<b>underpowered</b> study risks a <b>Type II error</b> (false negative); 'no significant difference' is not 'no difference'. Equivalence needs a pre-defined margin and adequate sample size. Absence of evidence is not evidence of absence.</p>
+  </div></details>
+</section>
+
+<!-- CONTENT END -->
+  </div>
+
+  <footer>
+    Legend: ★★★ very high priority · ★★ high · ★ important · 🩺 clinical case. &nbsp;|&nbsp; Keyboard: <kbd>/</kbd> search · <kbd>R</kbd> random · <kbd>J/K</kbd> navigate · <kbd>Space</kbd> open · <kbd>D</kbd> dark. &nbsp;|&nbsp; Sources: Goodman &amp; Gilman, Katzung, Rang &amp; Dale; ICMR (2017), NDCT Rules 2019, ICH-GCP, Declaration of Helsinki.
+  </footer>
+</div>
+
+<script>
+  const search   = document.getElementById('search');
+  const items    = Array.from(document.querySelectorAll('details.q'));
+  const sections = Array.from(document.querySelectorAll('section.sec'));
+  const counter  = document.getElementById('counter');
+  const nohit    = document.getElementById('nohit');
+  const chips    = Array.from(document.querySelectorAll('.chip'));
+  const themeBtn = document.getElementById('theme');
+  const root     = document.documentElement;
+  let activeFilter = 'all';
+  let kbIndex = -1;
+
+  items.forEach(d=>{
+    const s = d.querySelector('.stars');
+    d.dataset.pri  = s ? (s.textContent.match(/★/g)||[]).length : 0;
+    d.dataset.type = d.classList.contains('vignette') ? 'case' : 'q';
+  });
+
+  const visible = ()=> items.filter(d=> d.style.display!=='none');
+
+  function apply(){
+    const q = search.value.trim().toLowerCase();
+    let hits = 0;
+    items.forEach(d=>{
+      const matchSearch = !q || d.textContent.toLowerCase().includes(q);
+      let matchFilter = true;
+      if(activeFilter==='case')      matchFilter = d.dataset.type==='case';
+      else if(activeFilter!=='all')  matchFilter = d.dataset.pri===activeFilter;
+      const show = matchSearch && matchFilter;
+      d.style.display = show ? '' : 'none';
+      if(show){ hits++; if(q.length>2) d.open = true; }
+    });
+    sections.forEach(s=>{
+      const any = Array.from(s.querySelectorAll('details.q')).some(d=> d.style.display!=='none');
+      s.style.display = any ? '' : 'none';
+    });
+    nohit.style.display = hits===0 ? 'block' : 'none';
+    counter.textContent = (q || activeFilter!=='all') ? hits + ' shown' : items.length + ' questions';
+    clearKb();
+  }
+
+  chips.forEach(c=> c.onclick = ()=>{
+    chips.forEach(x=> x.classList.remove('active'));
+    c.classList.add('active');
+    activeFilter = c.dataset.f;
+    apply();
+  });
+
+  let t;
+  search.addEventListener('input', ()=>{ clearTimeout(t); t = setTimeout(apply, 110); });
+
+  document.getElementById('expandAll').onclick  = ()=> visible().forEach(d=> d.open=true);
+  document.getElementById('collapseAll').onclick = ()=> items.forEach(d=> d.open=false);
+
+  function randomQ(){
+    const vis = visible(); if(!vis.length) return;
+    items.forEach(d=> d.open=false);
+    const pick = vis[Math.floor(Math.random()*vis.length)];
+    pick.open = true;
+    setKb(items.indexOf(pick));
+  }
+  document.getElementById('shuffle').onclick = randomQ;
+
+  function setTheme(mode){
+    if(mode==='dark'){ root.setAttribute('data-theme','dark'); themeBtn.textContent='☀️'; }
+    else { root.removeAttribute('data-theme'); themeBtn.textContent='🌙'; }
+    try{ localStorage.setItem('pyq-theme', mode); }catch(e){}
+  }
+  themeBtn.onclick = ()=> setTheme(root.getAttribute('data-theme')==='dark' ? 'light' : 'dark');
+  try{ if(localStorage.getItem('pyq-theme')==='dark') setTheme('dark'); }catch(e){}
+
+  function clearKb(){ items.forEach(d=> d.classList.remove('kbfocus')); kbIndex=-1; }
+  function setKb(i){
+    items.forEach(d=> d.classList.remove('kbfocus'));
+    kbIndex = i;
+    if(i>=0){ items[i].classList.add('kbfocus'); items[i].scrollIntoView({behavior:'smooth', block:'center'}); }
+  }
+  function moveKb(dir){
+    const vis = visible(); if(!vis.length) return;
+    let cur = kbIndex>=0 ? vis.indexOf(items[kbIndex]) : -1;
+    cur = (cur + dir + vis.length) % vis.length;
+    setKb(items.indexOf(vis[cur]));
+  }
+
+  document.addEventListener('keydown', e=>{
+    if(e.target===search){ if(e.key==='Escape'){ search.value=''; apply(); search.blur(); } return; }
+    if(e.ctrlKey||e.metaKey||e.altKey) return;
+    switch(e.key){
+      case '/': e.preventDefault(); search.focus(); break;
+      case 'r': case 'R': randomQ(); break;
+      case 'e': case 'E': visible().forEach(d=> d.open=true); break;
+      case 'c': case 'C': items.forEach(d=> d.open=false); break;
+      case 'd': case 'D': themeBtn.click(); break;
+      case 'j': case 'J': case 'ArrowDown': e.preventDefault(); moveKb(1); break;
+      case 'k': case 'K': case 'ArrowUp':   e.preventDefault(); moveKb(-1); break;
+      case ' ': case 'Enter':
+        if(kbIndex>=0){ e.preventDefault(); items[kbIndex].open = !items[kbIndex].open; }
+        break;
+    }
+  });
+
+  apply();
+</script>
+</body>
+</html>
